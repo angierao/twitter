@@ -43,36 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
-        let requestToken = BDBOAuth1Credential(queryString: url.query)
-        let twitterClient = BDBOAuth1SessionManager(baseURL: NSURL(string: "https://api.twitter.com")!, consumerKey: "HTzblicMbQwaxauXoDKyVoLMC", consumerSecret: "YTXQ8ARoOKhSMJKQDQnBZt5EUHfTsr5gYc2RhFTehsa8Q4TQMj")
         
-        twitterClient.fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential!) in
-            print("got access token")
-            
-            twitterClient.GET("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
-                print("account: \(response)")
-                let userDictionary = response as! NSDictionary
-                //print("name: \(user!["name"])") 
-                
-                let user = User(dictionary: userDictionary)
-                }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
-                    print(error.localizedDescription)
-            })
-            
-            twitterClient.GET("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
-                let dictionaries = response as! [NSDictionary]
-                
-                let tweets = Tweet.tweetsWithArray(dictionaries)
-                
-                for tweet in tweets {
-                    print("\(tweet.text)")
-                }
-                }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
-                    print(error.localizedDescription)
-            })
-        }) { (error: NSError!) in
-                print(error.localizedDescription)
-        }
+        
+        let client = TwitterClientSM.sharedInstance
+        
+        client.handleOpenUrl(url)
         return true
     }
 

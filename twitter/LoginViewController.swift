@@ -18,17 +18,14 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func onLogIn(sender: AnyObject) {
-        let twitterClient = BDBOAuth1SessionManager(baseURL: NSURL(string: "https://api.twitter.com")!, consumerKey: "HTzblicMbQwaxauXoDKyVoLMC", consumerSecret: "YTXQ8ARoOKhSMJKQDQnBZt5EUHfTsr5gYc2RhFTehsa8Q4TQMj")
+        let client = TwitterClientSM.sharedInstance
         
-        twitterClient.deauthorize()
-        twitterClient.fetchRequestTokenWithPath("oauth/request_token", method: "GET", callbackURL: NSURL(string: "twitterclient://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential!) in
-            print("got a token")
-            
-            let url = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token )")
-            UIApplication.sharedApplication().openURL(url!)
-        }) { (error: NSError!) in
-                print("error: \(error.localizedDescription)")
+        client.login({ 
+            print("logged in")
+        }) { (error: NSError) in
+            print(error.localizedDescription)
         }
+    
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
