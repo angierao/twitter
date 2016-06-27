@@ -39,9 +39,11 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell") as! TweetCell
+        let tweetCell = tableView.dequeueReusableCellWithIdentifier("TweetCell") as! TweetCell
         
-        return cell
+        tweetCell.tweet = self.tweets![indexPath.row]
+        
+        return tweetCell
     }
 
     override func didReceiveMemoryWarning() {

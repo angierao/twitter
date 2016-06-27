@@ -9,29 +9,51 @@
 import UIKit
 
 class User: NSObject {
-    var name: NSString?
-    var screenname: NSString?
-    var profileUrl: NSURL?
-    var tagline: NSString?
+    
+    init(dictionary: NSDictionary) {
+        self.dictionary = dictionary
+        
+        //name = dictionary["name"] as? String
+        //screenname = dictionary["name"] as? String
+        
+        //let profileUrlString = dictionary["profile_image_url_https"] as? String
+        
+        /*if let profileUrlString = profileUrlString {
+            profileUrl = NSURL(string: profileUrlString)
+        }*/
+        
+        //tagline = dictionary["description"] as? String
+    }
+
+    var name: NSString? {
+        get {
+            return dictionary["name"] as? String
+        }
+    }
+    
+    var screenname: NSString? {
+        get {
+            return dictionary["screen_name"] as? String
+        }
+    }
+    
+    var profileUrl: NSURL? {
+        get {
+            let profileUrlString = dictionary["profile_image_url_https"] as? String
+            return NSURL(string: profileUrlString!)
+
+        }
+    }
+    var tagline: NSString? {
+        get {
+            return dictionary["description"] as? String
+        }
+    }
     
     var dictionary: NSDictionary
     
     static let userDidLogoutNotif = "UserDidLogout"
     
-    init(dictionary: NSDictionary) {
-        self.dictionary = dictionary
-        
-        name = dictionary["name"] as? String
-        screenname = dictionary["name"] as? String
-        
-        let profileUrlString = dictionary["profile_image_url_https"] as? String
-        
-        if let profileUrlString = profileUrlString {
-            profileUrl = NSURL(string: profileUrlString)
-        }
-        
-        tagline = dictionary["description"] as? String
-    }
     
     static var _currentUser: User?
     
