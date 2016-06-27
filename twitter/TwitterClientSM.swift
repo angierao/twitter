@@ -10,7 +10,7 @@ import UIKit
 import BDBOAuth1Manager
 
 class TwitterClientSM: BDBOAuth1SessionManager {
-    
+
     static let sharedInstance = TwitterClientSM(baseURL: NSURL(string: "https://api.twitter.com")!, consumerKey: "HTzblicMbQwaxauXoDKyVoLMC", consumerSecret: "YTXQ8ARoOKhSMJKQDQnBZt5EUHfTsr5gYc2RhFTehsa8Q4TQMj")
     
     var loginSuccess: (() -> ())?
@@ -32,17 +32,29 @@ class TwitterClientSM: BDBOAuth1SessionManager {
 
     }
     
+    func logout(){
+        User.currentUser = nil
+        deauthorize()
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(User.userDidLogoutNotif, object: nil)
+        
+    }
     func handleOpenUrl(url: NSURL) {
         let requestToken = BDBOAuth1Credential(queryString: url.query)
         
         fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential!) in
-            print("got access token")
             
-            self.loginSuccess?()
-            
+            self.currentAccount({ (user: User) in
+                User.currentUser = user
+                self.loginSuccess?()
+                }, failure: { (error: NSError) in
+                self.loginFailure!(error)
+            })
+
         }) { (error: NSError!) in
             print(error.localizedDescription)
-            self.loginFailure!(error)
+            self.loginFailure?(error)
+            
         }
 
     }
@@ -60,15 +72,15 @@ class TwitterClientSM: BDBOAuth1SessionManager {
 
     }
     
-    func currentAccount() {
+    func currentAccount(success: User -> (), failure: NSError -> ()) {
         GET("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
-            print("account: \(response)")
+
             let userDictionary = response as! NSDictionary
-            //print("name: \(user!["name"])")
-            
             let user = User(dictionary: userDictionary)
+            
+            success(user)
             }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
-                print(error.localizedDescription)
+                failure(error)
         })
     }
 }

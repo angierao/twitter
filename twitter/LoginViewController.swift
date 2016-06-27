@@ -18,10 +18,8 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func onLogIn(sender: AnyObject) {
-        let client = TwitterClientSM.sharedInstance
-        
-        client.login({ 
-            print("logged in")
+        TwitterClientSM.sharedInstance.login({
+            self.performSegueWithIdentifier("loginSegue", sender: nil)
         }) { (error: NSError) in
             print(error.localizedDescription)
         }
