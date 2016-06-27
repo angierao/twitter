@@ -51,17 +51,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             twitterClient.GET("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
                 print("account: \(response)")
-                let user = response as? NSDictionary
-                print("name: \(user!["name"])")
+                let userDictionary = response as! NSDictionary
+                //print("name: \(user!["name"])") 
+                
+                let user = User(dictionary: userDictionary)
                 }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
                     print(error.localizedDescription)
             })
             
             twitterClient.GET("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
-                let tweets = response as! [NSDictionary]
+                let dictionaries = response as! [NSDictionary]
+                
+                let tweets = Tweet.tweetsWithArray(dictionaries)
                 
                 for tweet in tweets {
-                    print("\(tweet["text"])") 
+                    print("\(tweet.text)")
                 }
                 }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
                     print(error.localizedDescription)
