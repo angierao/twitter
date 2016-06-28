@@ -34,6 +34,13 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         TwitterClientSM.sharedInstance.logout()
         
     }
+    
+    @IBAction func onFave(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func onRT(sender: AnyObject) {
+    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets?.count ?? 0
     }

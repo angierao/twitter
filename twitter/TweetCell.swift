@@ -15,6 +15,10 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var twitterNameLabel: UILabel!
     @IBOutlet weak var tweetLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var faveButton: UIButton!
+    @IBOutlet weak var faveLabel: UILabel!
+    @IBOutlet weak var RTButton: UIButton!
+    @IBOutlet weak var RTLabel: UILabel!
     
     var tweet: Tweet! {
         didSet {
@@ -29,6 +33,10 @@ class TweetCell: UITableViewCell {
             timeLabel.text = dateString
             
             tweetLabel.text = tweet.text as? String
+            
+            RTLabel.text = "\(tweet.RTs)"
+            
+            faveLabel.text = "\(tweet.faves)"
             
             let imageRequest = NSURLRequest(URL: user.profileUrl!)
             
