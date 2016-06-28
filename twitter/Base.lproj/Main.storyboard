@@ -305,7 +305,7 @@
                                 <rect key="frame" x="0.0" y="238" width="375" height="380"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="93" id="VFA-YN-dKg" customClass="ProfileCell" customModule="twitter" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProfileCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileCell" rowHeight="93" id="VFA-YN-dKg" customClass="ProfileCell" customModule="twitter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VFA-YN-dKg" id="RE5-NG-rfh">
@@ -329,12 +329,6 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="@Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29a-tc-ScF">
                                                     <rect key="frame" x="160" y="8" width="54" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4EH-02-YLk">
-                                                    <rect key="frame" x="232" y="8" width="30" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -365,11 +359,28 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4EH-02-YLk">
+                                                    <rect key="frame" x="232" y="8" width="30" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="4EH-02-YLk" firstAttribute="leading" secondItem="29a-tc-ScF" secondAttribute="trailing" constant="18" id="wLY-y5-gKa"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="RTButton" destination="PgB-0c-S2x" id="lf2-Ke-Uq3"/>
+                                            <outlet property="RTLabel" destination="td8-a3-AAl" id="siZ-nP-5jh"/>
+                                            <outlet property="faveButton" destination="C8Y-Ou-vUg" id="EFq-GI-sqB"/>
+                                            <outlet property="faveLabel" destination="w6D-gz-IGo" id="776-UN-aZE"/>
+                                            <outlet property="nameLabel" destination="bCn-4q-ogt" id="xLd-Fr-ErK"/>
+                                            <outlet property="profPicView" destination="kV1-X9-U1V" id="6f2-PI-5XC"/>
+                                            <outlet property="timeLabel" destination="4EH-02-YLk" id="m4e-p6-ypN"/>
+                                            <outlet property="tweetLabel" destination="iRK-1n-sBQ" id="fic-Nb-0D7"/>
+                                            <outlet property="twitterNameLabel" destination="29a-tc-ScF" id="eFU-5U-Fca"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -389,7 +400,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="nik-8d-bHN">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="KAi-OC-YUS" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="KAi-OC-YUS" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="dvt-f5-sEv">
                         <autoresizingMask key="autoresizingMask"/>

@@ -99,6 +99,20 @@ class TwitterClientSM: BDBOAuth1SessionManager {
 
     }
     
+    func profileTimeline(screenname: String, success: ([Tweet]) -> (), failure: NSError -> ())
+    {
+        GET("1.1/statuses/user_timeline.json?screen_name=\(screenname)&count=20", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
+            let dictionaries = response as! [NSDictionary]
+            
+            let tweets = Tweet.tweetsWithArray(dictionaries)
+            
+            success(tweets)
+
+            }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
+                failure(error)
+        })
+    }
+    
     func currentAccount(success: User -> (), failure: NSError -> ()) {
         GET("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
 
