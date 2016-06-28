@@ -143,7 +143,7 @@
                                             <outlet property="timeLabel" destination="3W3-Pu-AMN" id="mhb-xj-UKN"/>
                                             <outlet property="tweetLabel" destination="8Fh-Tc-wGU" id="7jw-ss-PVe"/>
                                             <outlet property="twitterNameLabel" destination="Gxk-YQ-gsq" id="qNN-J1-Pkf"/>
-                                            <segue destination="jHq-aA-qLg" kind="show" id="xdD-Qk-vAc"/>
+                                            <segue destination="jHq-aA-qLg" kind="show" identifier="detailSegue" id="xdD-Qk-vAc"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -206,25 +206,42 @@
                                 <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Retweets and likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgj-7k-rTX">
-                                <rect key="frame" x="24" y="291" width="143" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Retweets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgj-7k-rTX">
+                                <rect key="frame" x="24" y="291" width="71" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f00-af-guU">
-                                <rect key="frame" x="24" y="323" width="21" height="21"/>
-                                <state key="normal" image="likedButton"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WZ0-fb-SIh">
                                 <rect key="frame" x="60" y="319" width="27" height="30"/>
                                 <state key="normal" image="retweet"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f00-af-guU">
+                                <rect key="frame" x="24" y="323" width="21" height="21"/>
+                                <state key="normal" image="likedButton"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q0I-Bi-GFL">
+                                <rect key="frame" x="103" y="291" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Tweet" id="UAR-nQ-als"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="RTButton" destination="WZ0-fb-SIh" id="dT2-il-6Tl"/>
+                        <outlet property="RTLabel" destination="kgj-7k-rTX" id="xrC-fU-Lic"/>
+                        <outlet property="faveButton" destination="f00-af-guU" id="hbC-hS-qLB"/>
+                        <outlet property="faveLabel" destination="Q0I-Bi-GFL" id="Xqc-2n-bgA"/>
+                        <outlet property="nameLabel" destination="n1D-3q-ndr" id="Ipj-e2-F4c"/>
+                        <outlet property="profPicView" destination="0f3-HV-bvv" id="xlC-p1-0yC"/>
+                        <outlet property="timeLabel" destination="f6p-mC-TWf" id="3Rw-Mq-fo5"/>
+                        <outlet property="tweetLabel" destination="f9B-o3-UWU" id="hCx-CP-toc"/>
+                        <outlet property="twitterName" destination="ZZN-5u-mb0" id="AKH-sj-IOB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xKf-Pc-nG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
