@@ -32,7 +32,7 @@ class TweetCell: UITableViewCell {
             
             let imageRequest = NSURLRequest(URL: user.profileUrl!)
             
-            profPicView.setImageWithURLRequest(imageRequest, placeholderImage: UIImage(), success: { (request: NSURLRequest, response: NSHTTPURLResponse?, image: UIImage) in
+            profPicView.setImageWithURLRequest(imageRequest, placeholderImage: UIImage(named: "defaulttwitter"), success: { (request: NSURLRequest, response: NSHTTPURLResponse?, image: UIImage) in
                 self.profPicView.image = image
             }) { (request: NSURLRequest, response: NSHTTPURLResponse?, error: NSError) in
                     print(error)
