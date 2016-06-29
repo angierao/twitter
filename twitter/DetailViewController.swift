@@ -22,10 +22,45 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var RTButton: UIButton!
     @IBOutlet weak var faveButton: UIButton!
+    
+    //var tweet: Tweet! {
+        //didSet
+    //}
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        
+                let user: User = tweet!.author!
+                nameLabel.text = user.name as? String
+                let twitterNameString = user.screenname as! String
+                twitterName.text = "@\(twitterNameString)"
+                
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "MMM d, h:mm a"
+                let dateString = dateFormatter.stringFromDate(tweet!.timestamp!)
+                timeLabel.text = dateString
+                
+                tweetLabel.text = tweet!.text as? String
+                
+                RTLabel.text = "\(tweet!.RTs) RETWEETS"
+                
+                faveLabel.text = "\(tweet!.faves) LIKES"
+                
+                let imageRequest = NSURLRequest(URL: user.profileUrl!)
+                
+                profPicView.setImageWithURLRequest(imageRequest, placeholderImage: UIImage(named: "defaulttwitter"), success: { (request: NSURLRequest, response: NSHTTPURLResponse?, image: UIImage) in
+                    self.profPicView.image = image
+                }) { (request: NSURLRequest, response: NSHTTPURLResponse?, error: NSError) in
+                    print(error)
+                }
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

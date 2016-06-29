@@ -12,26 +12,56 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var tweets: [Tweet]?
     @IBOutlet weak var tableView: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
         
-        
-        TwitterClientSM.sharedInstance.homeTimeline({ (tweets: [Tweet]) in
-            
-            self.tweets = tweets
-            self.tableView.reloadData()
-        }) { (error: NSError) in
-                print(error)
-        }
+        composeButton()
 
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        TwitterClientSM.sharedInstance.homeTimeline({ (tweets: [Tweet]) in
+            
+            self.tweets = tweets
+            self.tableView.reloadData()
+            }, failure: { (error: NSError) in
+                print(error)
+        })
+        
+    }
+    
+    func composeButton() {
+        let button: UIButton = UIButton(type: UIButtonType.Custom)
+        button.setImage(UIImage(named: "compose.png"), forState: UIControlState.Normal)
+        button.addTarget(self, action: #selector(TweetsViewController.compose), forControlEvents: UIControlEvents.TouchUpInside)
+        button.frame = CGRectMake(0, 0, 20, 20)
+        
+        let barButton = UIBarButtonItem(customView: button)
+        //assign button to navigationbar
+        self.navigationItem.rightBarButtonItem = barButton
+    }
+    
+    func compose() {
+        print("compose")
+        performSegueWithIdentifier("composeSegue", sender: nil)
+        //presentViewController(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+    }
+    
     @IBAction func onLogOut(sender: AnyObject) {
         TwitterClientSM.sharedInstance.logout()
+        
+    }
+    
+    @IBAction func profileButtonTapped(sender: AnyObject) {
+        
+
         
     }
     
@@ -99,7 +129,21 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if segue.identifier == "detailSegue" {
             let detailVC = segue.destinationViewController as! DetailViewController
-            detailVC
+            
+            let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
+            let tweet = tweets![indexPath!.row]
+            detailVC.tweet = tweet
+
+        }
+        else if segue.identifier == "userProfileSegue" {
+            let userVC = segue.destinationViewController as! UserViewController
+            let button = sender as! UIButton
+            let view = button.superview!
+            let cell = view.superview as! TweetCell
+            let indexPath = tableView.indexPathForCell(cell)
+            
+            let tweet = tweets![(indexPath?.row)!]
+            userVC.user = tweet.author
         }
     }
     

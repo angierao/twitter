@@ -57,6 +57,15 @@ class TwitterClientSM: BDBOAuth1SessionManager {
         
     }
     
+    func newTweet(text: NSDictionary, success: (Tweet) -> (), failure: NSError -> ()) {
+        POST("1.1/statuses/update.json", parameters: text, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
+            let tweet = Tweet(dictionary: response as! NSDictionary)
+            success(tweet)
+            }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
+                failure(error)
+        })
+    }
+    
     func fave(id: Int, success: (Tweet) -> (), failure: NSError -> ()) {
         
         POST("1.1/favorites/create.json?id=\(id)", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in

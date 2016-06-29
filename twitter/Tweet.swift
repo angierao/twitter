@@ -44,7 +44,9 @@ class Tweet: NSObject {
         
     }
     
-    
+    class func newTweet(text: String) {
+        //let tweet = Tweet()
+    }
     class func tweetsWithArray(dictionaries: [NSDictionary]) -> [Tweet]{
         var tweets = [Tweet]()
         

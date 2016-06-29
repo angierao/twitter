@@ -10,6 +10,7 @@
 		1B243CE4E10A27A961EC6EED /* Pods_twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 354AD078BE9B3C97EA2BB82E /* Pods_twitter.framework */; };
 		37DE8BA682CB0892DB5501F4 /* Pods_twitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF545D92184EE4D35E823BC1 /* Pods_twitterTests.framework */; };
 		863174160BCEF955E872DD0F /* Pods_twitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490B85B06F2C3C1E8AC51632 /* Pods_twitterUITests.framework */; };
+		AF324F2A1D2449A60017AEAB /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF324F291D2449A60017AEAB /* UserViewController.swift */; };
 		AF5E680D1D21BA370008AF54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5E680C1D21BA370008AF54 /* AppDelegate.swift */; };
 		AF5E68121D21BA370008AF54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF5E68101D21BA370008AF54 /* Main.storyboard */; };
 		AF5E68141D21BA370008AF54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF5E68131D21BA370008AF54 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 		AF5E68511D2312280008AF54 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5E68501D2312280008AF54 /* DetailViewController.swift */; };
 		AF5E68531D232A510008AF54 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5E68521D232A510008AF54 /* ProfileViewController.swift */; };
 		AF5E68551D232B020008AF54 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5E68541D232B020008AF54 /* ProfileCell.swift */; };
+		AF5E68571D233E0A0008AF54 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5E68561D233E0A0008AF54 /* ComposeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,7 @@
 		5F3B199DC1D4D6229E8D7728 /* Pods-twitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-twitter/Pods-twitter.debug.xcconfig"; sourceTree = "<group>"; };
 		7EEEB777C277DC374C392174 /* Pods-twitterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twitterUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-twitterUITests/Pods-twitterUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A90F141BD9DD8EE164659352 /* Pods-twitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twitterTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-twitterTests/Pods-twitterTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AF324F291D2449A60017AEAB /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		AF5E68091D21BA370008AF54 /* twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF5E680C1D21BA370008AF54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF5E68111D21BA370008AF54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -72,6 +75,7 @@
 		AF5E68501D2312280008AF54 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		AF5E68521D232A510008AF54 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AF5E68541D232B020008AF54 /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		AF5E68561D233E0A0008AF54 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		BDEF42B00863A1EAF131BB08 /* Pods-twitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twitterUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-twitterUITests/Pods-twitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BF545D92184EE4D35E823BC1 /* Pods_twitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_twitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7D12C70A80EB8DC870C2CA1 /* Pods-twitterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twitterTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-twitterTests/Pods-twitterTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -191,6 +195,8 @@
 				AF5E68481D21CFF70008AF54 /* TweetsViewController.swift */,
 				AF5E68501D2312280008AF54 /* DetailViewController.swift */,
 				AF5E68521D232A510008AF54 /* ProfileViewController.swift */,
+				AF5E68561D233E0A0008AF54 /* ComposeViewController.swift */,
+				AF324F291D2449A60017AEAB /* UserViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -476,11 +482,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF5E68401D21C4400008AF54 /* User.swift in Sources */,
+				AF324F2A1D2449A60017AEAB /* UserViewController.swift in Sources */,
 				AF5E684B1D21D1A80008AF54 /* TweetCell.swift in Sources */,
 				AF5E68421D21C44A0008AF54 /* Tweet.swift in Sources */,
 				AF5E68471D21C96F0008AF54 /* TwitterClientSM.swift in Sources */,
 				AF5E683B1D21BB490008AF54 /* LoginViewController.swift in Sources */,
 				AF5E68491D21CFF70008AF54 /* TweetsViewController.swift in Sources */,
+				AF5E68571D233E0A0008AF54 /* ComposeViewController.swift in Sources */,
 				AF5E68531D232A510008AF54 /* ProfileViewController.swift in Sources */,
 				AF5E680D1D21BA370008AF54 /* AppDelegate.swift in Sources */,
 				AF5E68511D2312280008AF54 /* DetailViewController.swift in Sources */,
