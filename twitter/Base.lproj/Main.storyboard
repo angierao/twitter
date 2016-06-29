@@ -445,7 +445,7 @@
                                 <rect key="frame" x="0.0" y="236" width="375" height="382"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="94" id="FOn-He-SGq">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="UserTweetCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserTweetCell" rowHeight="94" id="FOn-He-SGq" customClass="UserTweetCell" customModule="twitter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FOn-He-SGq" id="Paj-bl-aXz">
@@ -510,6 +510,17 @@
                                                 <constraint firstItem="Spl-d1-Jxh" firstAttribute="leading" secondItem="ejv-wF-T3z" secondAttribute="trailing" constant="18" id="UEz-XN-Ha9"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="RTButton" destination="t42-qx-u6u" id="Qjg-p1-eZk"/>
+                                            <outlet property="RTLabel" destination="JKO-O2-e0A" id="Gaf-eS-XED"/>
+                                            <outlet property="faveButton" destination="eOb-wR-4ro" id="j4f-q8-TJM"/>
+                                            <outlet property="faveLabel" destination="Ndp-qd-Uak" id="VVc-K1-882"/>
+                                            <outlet property="nameLabel" destination="iVS-f7-hQK" id="EgE-w3-xfn"/>
+                                            <outlet property="profPicView" destination="Xa7-hY-n9S" id="mb2-VK-gHM"/>
+                                            <outlet property="timeLabel" destination="Spl-d1-Jxh" id="wHX-ZA-YlY"/>
+                                            <outlet property="tweetLabel" destination="EgZ-4w-UE7" id="P5D-4P-Vbv"/>
+                                            <outlet property="twitterNameLabel" destination="ejv-wF-T3z" id="pZy-Dr-iDk"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -517,13 +528,13 @@
                                 <rect key="frame" x="11" y="146" width="60" height="56"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgq-VP-c8B">
-                                <rect key="frame" x="11" y="207" width="84" height="21"/>
+                                <rect key="frame" x="11" y="207" width="136" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Twitter name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0YI-1f-API">
-                                <rect key="frame" x="11" y="224" width="84" height="18"/>
+                                <rect key="frame" x="11" y="224" width="131" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -532,6 +543,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="backgroundView" destination="A2l-lb-Mam" id="dbj-YV-Q97"/>
+                        <outlet property="nameLabel" destination="jgq-VP-c8B" id="kGK-L4-W6j"/>
+                        <outlet property="profPicView" destination="m3A-dK-048" id="BZu-5a-Vvm"/>
+                        <outlet property="tableView" destination="TDW-el-bej" id="Bzq-ua-KrD"/>
+                        <outlet property="twitterNameLabel" destination="0YI-1f-API" id="2Id-Ta-Lfi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ng7-47-MHQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
