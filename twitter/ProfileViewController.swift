@@ -38,8 +38,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let twitterName = user!.screenname as! String
         twitterNameLabel.text = "@\(twitterName)"
         descriptionLabel.text = user!.tagline as? String
-        print(user!.tagline)
-        print("tagline")
         let imageRequest = NSURLRequest(URL: user!.profileUrl!)
         
         profPicView.setImageWithURLRequest(imageRequest, placeholderImage: UIImage(named: "defaulttwitter"), success: { (request: NSURLRequest, response: NSHTTPURLResponse?, image: UIImage) in
@@ -73,14 +71,25 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "profileReplySegue" {
+            let composeVC = segue.destinationViewController as! ComposeViewController
+            let button = sender as! UIButton
+            let view = button.superview!
+            let cell = view.superview as! ProfileCell
+            let indexPath = tableView.indexPathForCell(cell)
+            
+            let tweet = tweets![(indexPath?.row)!]
+            composeVC.replyUser = tweet.author?.screenname as? String
+        }
     }
-    */
+    
 
 }

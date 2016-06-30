@@ -29,8 +29,13 @@ class TweetCell: UITableViewCell {
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "MMM d, h:mm a"
-            let dateString = dateFormatter.stringFromDate(tweet.timestamp!)
-            timeLabel.text = dateString
+            /*
+            if let time = tweet.timestamp {
+                let dateString = dateFormatter.stringFromDate(time)
+                timeLabel.text = dateString
+
+            }*/
+            timeLabel.text = tweet.timeString
             
             tweetLabel.text = tweet.text as? String
             

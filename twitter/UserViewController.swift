@@ -47,6 +47,16 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         }) { (request: NSURLRequest, response: NSHTTPURLResponse?, error: NSError) in
             print(error)
         }
+        
+        let backgroundRequest = NSURLRequest(URL: (user?.backgroundUrl)!)
+        profPicView.setImageWithURLRequest(backgroundRequest, placeholderImage: UIImage(), success: { (request: NSURLRequest, response: NSHTTPURLResponse?, image: UIImage) in
+            self.backgroundView.image = image
+        }) { (request: NSURLRequest, response: NSHTTPURLResponse?, error: NSError) in
+            print(error)
+        }
+
+        
+        
 
 
     }

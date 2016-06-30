@@ -50,10 +50,21 @@ class User: NSObject {
         }
     }
     
+    var backgroundUrl: NSURL? {
+        get {
+            if let backUrlString = dictionary["profile_background_image_url"] as? String {
+                return NSURL(string: backUrlString)
+            }
+            else {
+                return NSURL(string: "")
+            }
+            
+        }
+    }
+    
     var dictionary: NSDictionary
     
     static let userDidLogoutNotif = "UserDidLogout"
-    
     
     static var _currentUser: User?
     

@@ -28,10 +28,10 @@ class ProfileCell: UITableViewCell {
             let twitterName = user.screenname as! String
             twitterNameLabel.text = "@\(twitterName)"
             
-            let dateFormatter = NSDateFormatter()
+            /*let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "MMM d, h:mm a"
-            let dateString = dateFormatter.stringFromDate(tweet.timestamp!)
-            timeLabel.text = dateString
+            let dateString = dateFormatter.stringFromDate(tweet.timestamp!)*/
+            timeLabel.text = tweet.timeString
             
             tweetLabel.text = tweet.text as? String
             

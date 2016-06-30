@@ -23,7 +23,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableViewAutomaticDimension
         
         composeButton()
@@ -69,7 +69,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func compose() {
-        print("compose")
         performSegueWithIdentifier("composeSegue", sender: nil)
     }
     
@@ -137,7 +136,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let parameters: NSDictionary = [
             "count": tweetsLoaded
         ]
-        //print(tweetsLoaded)
+        print(tweetsLoaded)
         TwitterClientSM.sharedInstance.homeTimeline(parameters, success: { (tweets: [Tweet]) in
             
             self.tweets = tweets
@@ -152,7 +151,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func scrollViewDidScroll(scrollView: UIScrollView) {
         //print(isMoreDataLoading)
         if (!isMoreDataLoading) {
-            //isMoreDataLoading = true
             
             let scrollViewContentHeight = tableView.contentSize.height
             let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
