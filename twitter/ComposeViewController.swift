@@ -16,23 +16,42 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIAlertViewDe
     @IBOutlet weak var tweetButton: UIButton!
     @IBOutlet weak var charsLeft: UILabel!
     @IBOutlet weak var tweetView: UITextView!
+    
+    var replyUser: String?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.tweetView.delegate = self
+        self.tweetView.becomeFirstResponder()
         // Do any additional setup after loading the view.
         
         //CGRect frameRect = composeField.frame
         
-        self.tweetView.becomeFirstResponder()
-        self.tweetView.delegate = self
-        charsLeft.text = "\(maxChars)"
+        //tweetView = UITextView(frame: CGRect(x: 20, y: 80,
+            //width: self.view.frame.size.width - 40, height: 40))
+        //self.view.addSubview(tweetView!)
         
-        self.tweetView.text = "What's happening?"
-        self.tweetView.textColor = UIColor.lightGrayColor()
-
-        //cancelButton.backgroundColor = UIColor(red: 85/255, green: 172/255, blue: 238/255, alpha: 1.0)
         
-        //cancelButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        if let replyUser = replyUser {
+            if replyUser.characters.count > 0 {
+                applyPlaceholderStyle(tweetView!, placeholderText: "@\(replyUser) ")
+            }
+            
+        }
+        print("tweet")
+        print(self.tweetView.text)
+        
+        //self.tweetView.textColor = UIColor.lightGrayColor()
+        
+        if let replyUser = replyUser {
+            let textLength = maxChars - (replyUser.characters.count + 2)
+            charsLeft.text = "\(textLength)"
+        }
+        else {
+            charsLeft.text = "\(maxChars)"
+        }
+        
+        //charsLeft.text = "\(maxChars - (((replyUser?.characters.count)! + 2) ?? 0))"
+        
         
         cancelButton.layer.cornerRadius = cancelButton.frame.height/6
         
@@ -50,9 +69,15 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIAlertViewDe
         charsLeft.textColor = .lightGrayColor()
         
     }
+    
+    func applyPlaceholderStyle(aTextview: UITextView, placeholderText: String)
+    {
+        // make it look (initially) like a placeholder
+        aTextview.textColor = UIColor.lightGrayColor()
+        aTextview.text = placeholderText
+    }
 
     @IBAction func onTweet(sender: AnyObject) {
-        //let tweetText = composeField.text
         let tweetText = tweetView.text
         if tweetText.characters.count > 140 {
             let alertController = UIAlertController(title: "Error", message: "Tweet must be 140 characters or less", preferredStyle: .Alert)
@@ -98,7 +123,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIAlertViewDe
     
     func textViewDidBeginEditing(textView: UITextView) {
         if tweetView.textColor == UIColor.lightGrayColor() {
-            tweetView.text = nil
+            //tweetView.text = nil
             tweetView.textColor = UIColor.blackColor()
         }
     }

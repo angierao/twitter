@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profPicView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -36,6 +37,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         nameLabel.text = user!.name as? String
         let twitterName = user!.screenname as! String
         twitterNameLabel.text = "@\(twitterName)"
+        descriptionLabel.text = user!.tagline as? String
+        print(user!.tagline)
+        print("tagline")
         let imageRequest = NSURLRequest(URL: user!.profileUrl!)
         
         profPicView.setImageWithURLRequest(imageRequest, placeholderImage: UIImage(named: "defaulttwitter"), success: { (request: NSURLRequest, response: NSHTTPURLResponse?, image: UIImage) in

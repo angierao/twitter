@@ -94,8 +94,8 @@ class TwitterClientSM: BDBOAuth1SessionManager {
             self.loginFailure?(error)
         }
     }
-    func homeTimeline(success: ([Tweet]) -> (), failure: NSError -> ()) {
-        GET("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
+    func homeTimeline(parameters: NSDictionary, success: ([Tweet]) -> (), failure: NSError -> ()) {
+        GET("1.1/statuses/home_timeline.json", parameters: parameters, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
             let dictionaries = response as! [NSDictionary]
             
             let tweets = Tweet.tweetsWithArray(dictionaries)

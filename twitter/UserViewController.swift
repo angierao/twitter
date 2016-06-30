@@ -13,6 +13,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     var tweets: [Tweet]?
     var user: User?
     
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var profPicView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var twitterNameLabel: UILabel!
@@ -38,6 +39,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         nameLabel.text = user!.name as? String
         let twitterName = user!.screenname as! String
         twitterNameLabel.text = "@\(twitterName)"
+        descriptionLabel.text = user?.tagline as? String
         let imageRequest = NSURLRequest(URL: user!.profileUrl!)
         
         profPicView.setImageWithURLRequest(imageRequest, placeholderImage: UIImage(named: "defaulttwitter"), success: { (request: NSURLRequest, response: NSHTTPURLResponse?, image: UIImage) in

@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import MBProgressHUD
 
-class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
     var tweets: [Tweet]?
+    var tweetsLoaded = 20
+    var loadingMoreView: InfiniteScrollActivityView?
     @IBOutlet weak var tableView: UITableView!
+    var isMoreDataLoading = false
     
     
     override func viewDidLoad() {
@@ -19,15 +23,31 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         composeButton()
+        
+        // Set up Infinite Scroll loading indicator
+        
+        let frame = CGRectMake(0, tableView.contentSize.height, tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
+        loadingMoreView = InfiniteScrollActivityView(frame: frame)
+        loadingMoreView!.hidden = true
+        tableView.addSubview(loadingMoreView!)
+        
+        var insets = tableView.contentInset;
+        insets.bottom += InfiniteScrollActivityView.defaultHeight;
+        tableView.contentInset = insets
 
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        TwitterClientSM.sharedInstance.homeTimeline({ (tweets: [Tweet]) in
+        let parameters: NSDictionary = [
+            "count": tweetsLoaded
+        ]
+        TwitterClientSM.sharedInstance.homeTimeline(parameters, success: { (tweets: [Tweet]) in
             
             self.tweets = tweets
             self.tableView.reloadData()
@@ -51,7 +71,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func compose() {
         print("compose")
         performSegueWithIdentifier("composeSegue", sender: nil)
-        //presentViewController(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
     }
     
     @IBAction func onLogOut(sender: AnyObject) {
@@ -112,6 +131,41 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         return tweetCell
     }
+    
+    func loadMoreData() {
+        tweetsLoaded += 20
+        let parameters: NSDictionary = [
+            "count": tweetsLoaded
+        ]
+        //print(tweetsLoaded)
+        TwitterClientSM.sharedInstance.homeTimeline(parameters, success: { (tweets: [Tweet]) in
+            
+            self.tweets = tweets
+            self.isMoreDataLoading = false
+            self.tableView.reloadData()
+            }, failure: { (error: NSError) in
+                print(error)
+        })
+        
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        //print(isMoreDataLoading)
+        if (!isMoreDataLoading) {
+            //isMoreDataLoading = true
+            
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.dragging) {
+                isMoreDataLoading = true
+                
+                loadMoreData()
+            }
+            
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -144,6 +198,17 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             let tweet = tweets![(indexPath?.row)!]
             userVC.user = tweet.author
+        }
+        else if segue.identifier == "replySegue" {
+            let composeVC = segue.destinationViewController as! ComposeViewController
+            let button = sender as! UIButton
+            let view = button.superview!
+            let cell = view.superview as! TweetCell
+            let indexPath = tableView.indexPathForCell(cell)
+            
+            let tweet = tweets![(indexPath?.row)!]
+            composeVC.replyUser = tweet.author?.screenname as? String
+            
         }
     }
     

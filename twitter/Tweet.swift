@@ -40,7 +40,7 @@ class Tweet: NSObject {
         
         RTs = dictionary["retweet_count"] as? Int ?? 0
         
-        faves = dictionary["favourites_count"] as? Int ?? 0
+        faves = dictionary["favorite_count"] as? Int ?? 0
         
     }
     
