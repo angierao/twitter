@@ -1092,6 +1092,7 @@
                                             <outlet property="timeLabel" destination="Spl-d1-Jxh" id="wHX-ZA-YlY"/>
                                             <outlet property="tweetLabel" destination="EgZ-4w-UE7" id="P5D-4P-Vbv"/>
                                             <outlet property="twitterNameLabel" destination="ejv-wF-T3z" id="pZy-Dr-iDk"/>
+                                            <segue destination="jHq-aA-qLg" kind="show" identifier="userDetailSegue" id="fkU-5J-fzd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1464,7 +1465,7 @@
         <image name="retweet-action" width="75" height="72"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tqB-np-9iZ"/>
         <segue reference="TIB-LR-4QR"/>
+        <segue reference="fkU-5J-fzd"/>
     </inferredMetricsTieBreakers>
 </document>

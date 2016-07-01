@@ -26,8 +26,6 @@ class DetailViewController: UIViewController {
     //var tweet: Tweet! {
         //didSet
     //}
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,8 +62,7 @@ class DetailViewController: UIViewController {
                 }) { (request: NSURLRequest, response: NSHTTPURLResponse?, error: NSError) in
                     print(error)
                 }
-        
-        
+                profPicView.layer.cornerRadius = profPicView.frame.height/12
         
     }
 
