@@ -85,6 +85,8 @@ class TrendingViewController: UIViewController, UITableViewDelegate, UITableView
         let trendingCell = tableView.dequeueReusableCellWithIdentifier("TrendingCell") as! TrendingCell
         
         trendingCell.trend = self.trends![indexPath.row]
+        trendingCell.backgroundColor = UIColor(red: 85/255, green: 172/255, blue: 238/255, alpha: 1.0)
+        trendingCell.nameLabel.textColor = UIColor.whiteColor()
         
         return trendingCell
     }

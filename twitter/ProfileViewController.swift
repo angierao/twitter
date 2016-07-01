@@ -20,6 +20,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var followingLabel: UILabel!
     var tweets: [Tweet]?
     
+    @IBAction func onLogout(sender: AnyObject) {
+        TwitterClientSM.sharedInstance.logout()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

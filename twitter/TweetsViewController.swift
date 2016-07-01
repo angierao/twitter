@@ -9,7 +9,14 @@
 import UIKit
 import MBProgressHUD
 
+protocol CenterViewControllerDelegate {
+    func toggleLeftPanel()
+    func collapseSidePanels()
+}
+
 class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+    
+    var delegate: CenterViewControllerDelegate?
     
     var tweets: [Tweet]?
     var tweetsLoaded = 20
@@ -17,6 +24,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     var isMoreDataLoading = false
     
+    @IBAction func trendingTapped(sender: AnyObject) {
+        print("trending tapped")
+        delegate?.toggleLeftPanel()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,11 +86,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func compose() {
         performSegueWithIdentifier("composeSegue", sender: nil)
     }
-    
-    @IBAction func onLogOut(sender: AnyObject) {
-        TwitterClientSM.sharedInstance.logout()
-        
-    }
+
     
     @IBAction func profileButtonTapped(sender: AnyObject) {
         
