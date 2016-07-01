@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let profileViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileNavigationController")
             profileViewController.tabBarItem.title = "Profile"
+            profileViewController.tabBarItem.image = UIImage(named: "icon-profile")
 
             
             let mentionsViewController = storyboard.instantiateViewControllerWithIdentifier("MentionsNavigationController")
