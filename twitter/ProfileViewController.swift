@@ -31,8 +31,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
-        
-        
+        navigationController!.navigationBar.barTintColor = UIColor(red: 85/255, green: 172/255, blue: 238/255, alpha: 1.0)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
+        self.title = "Profile"
 
         let user = User.currentUser
         
@@ -70,6 +72,43 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func onFave(sender: AnyObject) {
+        let button = sender as! UIButton
+        let view = button.superview!
+        let cell = view.superview as! UserTweetCell
+        let indexPath = tableView.indexPathForCell(cell)
+        
+        let tweet = tweets![(indexPath?.row)!]
+        
+        let grayHeart = UIImagePNGRepresentation(UIImage(named: "favorite-action")!)
+        let buttonImage = UIImagePNGRepresentation(button.currentImage!)
+        
+        if grayHeart!.isEqualToData(buttonImage!) {
+            print("1")
+            tweet.faves = tweet.faves + 1
+            cell.faveLabel.text = "\(tweet.faves)"
+            let favorited = UIImage(named: "favorited")
+            cell.faveButton.setImage(favorited, forState: UIControlState.Normal)
+            TwitterClientSM.sharedInstance.fave(tweet.id, success: { (tweet: Tweet) in
+                self.tableView.reloadData()
+                }, failure: { (error: NSError) in
+                    print(error)
+            })
+        }
+        else {
+            print("2")
+            tweet.faves = tweet.faves - 1
+            cell.faveLabel.text = "\(tweet.faves)"
+            let favorite = UIImage(named: "favorite-action")
+            cell.faveButton.setImage(favorite, forState: UIControlState.Normal)
+            TwitterClientSM.sharedInstance.unfave(tweet.id, success: { (tweet: Tweet) in
+                self.tableView.reloadData()
+                }, failure: { (error: NSError) in
+                    print(error)
+            })
+        }
+        
+    }
     override func viewWillAppear(animated: Bool) {
         let user = User.currentUser
         

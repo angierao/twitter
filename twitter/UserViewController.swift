@@ -32,6 +32,11 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
         
+        navigationController!.navigationBar.barTintColor = UIColor(red: 85/255, green: 172/255, blue: 238/255, alpha: 1.0)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
+        self.title = "\(user!.name!)"
+        
         TwitterClientSM.sharedInstance.profileTimeline((user!.screenname)! as String, success: { (tweets: [Tweet]) in
             self.tweets = tweets
             self.tableView.reloadData()
@@ -75,12 +80,35 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         tweet.RTs = tweet.RTs + 1
         cell.RTLabel.text = "\(tweet.RTs)"
         
-        TwitterClientSM.sharedInstance.retweet(tweet.id, success: { (tweet: Tweet) in
-            self.tweets?.append(tweet)
-            self.tableView.reloadData()
-            }, failure:  { (error: NSError) in
-                print(error)
-        })
+        let grayRT = UIImagePNGRepresentation(UIImage(named: "retweet-action")!)
+        let buttonImage = UIImagePNGRepresentation(button.currentImage!)
+        
+        if grayRT!.isEqualToData(buttonImage!) {
+            print("inside")
+            tweet.retweeted = true
+            let greenRT = UIImage(named: "retweeted-green")
+            cell.RTButton.setImage(greenRT, forState: UIControlState.Normal)
+            tweet.RTs = tweet.RTs + 1
+            cell.RTLabel.text = "\(tweet.RTs)"
+            
+            TwitterClientSM.sharedInstance.retweet(tweet.id, success: { (tweet: Tweet) in
+                self.tweets?.append(tweet)
+                self.tableView.reloadData()
+                }, failure:  { (error: NSError) in
+                    print(error)
+            })
+            tableView.reloadData()
+            
+            
+        }
+        else {
+            tweet.retweeted = false
+            let grayRT = UIImage(named: "retweet-action")
+            cell.RTButton.setImage(grayRT, forState: UIControlState.Normal)
+            tweet.RTs = tweet.RTs - 1
+            cell.RTLabel.text = "\(tweet.RTs)"
+        }
+
 
     }
     @IBAction func onFave(sender: AnyObject) {

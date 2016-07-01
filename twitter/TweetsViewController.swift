@@ -31,13 +31,13 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //navigationController!.navigationBar.barTintColor = UIColor(red: 85/255, green: 172/255, blue: 238/255, alpha: 1.0)
+        navigationController!.navigationBar.barTintColor = UIColor(red: 85/255, green: 172/255, blue: 238/255, alpha: 1.0)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        let imageView = UIImageView(image: UIImage(named: "twitterbirdsmall"))
+        let imageView = UIImageView(image: UIImage(named: "whitebird"))
         self.navigationItem.titleView = imageView
         
         composeButton()
@@ -101,7 +101,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func composeButton() {
         let button: UIButton = UIButton(type: UIButtonType.Custom)
-        button.setImage(UIImage(named: "composetweet.png"), forState: UIControlState.Normal)
+        button.setImage(UIImage(named: "pencilline.png"), forState: UIControlState.Normal)
         button.addTarget(self, action: #selector(TweetsViewController.compose), forControlEvents: UIControlEvents.TouchUpInside)
         button.frame = CGRectMake(0, 0, 30, 30)
         
@@ -133,7 +133,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let buttonImage = UIImagePNGRepresentation(button.currentImage!)
         
         if grayHeart!.isEqualToData(buttonImage!) {
-            print("1")
+            tweet.favorited = true
             tweet.faves = tweet.faves + 1
             cell.faveLabel.text = "\(tweet.faves)"
             let favorited = UIImage(named: "favorited")
@@ -145,7 +145,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             })
         }
         else {
-            print("2")
+            tweet.favorited = false
             tweet.faves = tweet.faves - 1
             cell.faveLabel.text = "\(tweet.faves)"
             let favorite = UIImage(named: "favorite-action")
@@ -165,11 +165,15 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let indexPath = tableView.indexPathForCell(cell)
         
         let tweet = tweets![(indexPath?.row)!]
-        print(tweet.favorited)
-        print("2")
-        if !tweet.favorited! {
-            tweet.favorited = true
-            print(tweet.favorited)
+        
+        let grayRT = UIImagePNGRepresentation(UIImage(named: "retweet-action")!)
+        let buttonImage = UIImagePNGRepresentation(button.currentImage!)
+        
+        if grayRT!.isEqualToData(buttonImage!) {
+            print("inside")
+            tweet.retweeted = true
+            let greenRT = UIImage(named: "retweeted-green")
+            cell.RTButton.setImage(greenRT, forState: UIControlState.Normal)
             tweet.RTs = tweet.RTs + 1
             cell.RTLabel.text = "\(tweet.RTs)"
             
@@ -182,6 +186,13 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             tableView.reloadData()
             
 
+        }
+        else {
+            tweet.retweeted = false
+            let grayRT = UIImage(named: "retweet-action")
+            cell.RTButton.setImage(grayRT, forState: UIControlState.Normal)
+            tweet.RTs = tweet.RTs - 1
+            cell.RTLabel.text = "\(tweet.RTs)"
         }
         
         

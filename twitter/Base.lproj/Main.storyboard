@@ -259,10 +259,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="Zwj-nG-4SP">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="A3R-lu-T7x">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lPe-jl-QPQ">
-                                <rect key="frame" x="16" y="7" width="63" height="30"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lPe-jl-QPQ">
+                                <rect key="frame" x="16" y="7" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Trending"/>
+                                <state key="normal" image="trending"/>
                                 <connections>
                                     <action selector="trendingTapped:" destination="004-EK-Aur" eventType="touchUpInside" id="ZLZ-Yb-vuD"/>
                                 </connections>
@@ -643,6 +643,7 @@
                                                     </constraints>
                                                     <state key="normal" image="favorite-action"/>
                                                     <connections>
+                                                        <action selector="onFave:" destination="L1y-ES-Mrh" eventType="touchUpInside" id="KOn-FI-D6v"/>
                                                         <action selector="onFave:" destination="004-EK-Aur" eventType="touchUpInside" id="R93-uX-jic"/>
                                                     </connections>
                                                 </button>
@@ -1466,9 +1467,10 @@
         <image name="favorite-action" width="122" height="112"/>
         <image name="reply-action" width="65" height="72"/>
         <image name="retweet-action" width="75" height="72"/>
+        <image name="trending" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xT6-Jv-uLo"/>
-        <segue reference="fkU-5J-fzd"/>
+        <segue reference="xdD-Qk-vAc"/>
+        <segue reference="RGX-uQ-u5d"/>
     </inferredMetricsTieBreakers>
 </document>
