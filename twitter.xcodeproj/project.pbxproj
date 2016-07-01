@@ -11,6 +11,8 @@
 		37DE8BA682CB0892DB5501F4 /* Pods_twitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF545D92184EE4D35E823BC1 /* Pods_twitterTests.framework */; };
 		863174160BCEF955E872DD0F /* Pods_twitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490B85B06F2C3C1E8AC51632 /* Pods_twitterUITests.framework */; };
 		AF23BA4E1D265AAC007ED1CB /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF23BA4D1D265AAC007ED1CB /* ContainerViewController.swift */; };
+		AF23BA501D26E632007ED1CB /* MentionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF23BA4F1D26E632007ED1CB /* MentionsViewController.swift */; };
+		AF23BA521D26E91E007ED1CB /* MentionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF23BA511D26E91E007ED1CB /* MentionCell.swift */; };
 		AF324F2A1D2449A60017AEAB /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF324F291D2449A60017AEAB /* UserViewController.swift */; };
 		AF324F2C1D244FBE0017AEAB /* UserTweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF324F2B1D244FBE0017AEAB /* UserTweetCell.swift */; };
 		AF324F2F1D2580860017AEAB /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF324F2E1D2580860017AEAB /* InfiniteScrollActivityView.swift */; };
@@ -60,6 +62,8 @@
 		7EEEB777C277DC374C392174 /* Pods-twitterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twitterUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-twitterUITests/Pods-twitterUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A90F141BD9DD8EE164659352 /* Pods-twitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twitterTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-twitterTests/Pods-twitterTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AF23BA4D1D265AAC007ED1CB /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		AF23BA4F1D26E632007ED1CB /* MentionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionsViewController.swift; sourceTree = "<group>"; };
+		AF23BA511D26E91E007ED1CB /* MentionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionCell.swift; sourceTree = "<group>"; };
 		AF324F291D2449A60017AEAB /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		AF324F2B1D244FBE0017AEAB /* UserTweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTweetCell.swift; sourceTree = "<group>"; };
 		AF324F2E1D2580860017AEAB /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 				AF324F2B1D244FBE0017AEAB /* UserTweetCell.swift */,
 				AF5E684A1D21D1A80008AF54 /* TweetCell.swift */,
 				AF4553BE1D262F76002EAE64 /* TrendingCell.swift */,
+				AF23BA511D26E91E007ED1CB /* MentionCell.swift */,
 			);
 			name = "Table View Cells";
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 				AF324F291D2449A60017AEAB /* UserViewController.swift */,
 				AF4553BC1D262F10002EAE64 /* TrendingViewController.swift */,
 				AF23BA4D1D265AAC007ED1CB /* ContainerViewController.swift */,
+				AF23BA4F1D26E632007ED1CB /* MentionsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -509,6 +515,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF5E68401D21C4400008AF54 /* User.swift in Sources */,
+				AF23BA501D26E632007ED1CB /* MentionsViewController.swift in Sources */,
 				AF324F2A1D2449A60017AEAB /* UserViewController.swift in Sources */,
 				AF4553BD1D262F10002EAE64 /* TrendingViewController.swift in Sources */,
 				AF324F2C1D244FBE0017AEAB /* UserTweetCell.swift in Sources */,
@@ -517,6 +524,7 @@
 				AF5E68471D21C96F0008AF54 /* TwitterClientSM.swift in Sources */,
 				AF5E683B1D21BB490008AF54 /* LoginViewController.swift in Sources */,
 				AF4553BF1D262F76002EAE64 /* TrendingCell.swift in Sources */,
+				AF23BA521D26E91E007ED1CB /* MentionCell.swift in Sources */,
 				AF5E68491D21CFF70008AF54 /* TweetsViewController.swift in Sources */,
 				AF324F2F1D2580860017AEAB /* InfiniteScrollActivityView.swift in Sources */,
 				AF5E68571D233E0A0008AF54 /* ComposeViewController.swift in Sources */,

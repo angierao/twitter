@@ -11,6 +11,7 @@ import CoreLocation
 
 class TrendingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     var trends: [Trend]?
     var locManager = CLLocationManager()
@@ -42,6 +43,10 @@ class TrendingViewController: UIViewController, UITableViewDelegate, UITableView
         UIApplication.sharedApplication().openURL(url!)
     }
     override func viewWillAppear(animated: Bool) {
+        self.view.backgroundColor = UIColor(red: 85/255, green: 172/255, blue: 238/255, alpha: 1.0)
+        titleLabel.text = "Trending near you"
+        titleLabel.textColor = UIColor.whiteColor()
+        
         locManager.delegate = self
         locManager.desiredAccuracy = kCLLocationAccuracyBest
         locManager.requestWhenInUseAuthorization()
@@ -87,6 +92,8 @@ class TrendingViewController: UIViewController, UITableViewDelegate, UITableView
         trendingCell.trend = self.trends![indexPath.row]
         trendingCell.backgroundColor = UIColor(red: 85/255, green: 172/255, blue: 238/255, alpha: 1.0)
         trendingCell.nameLabel.textColor = UIColor.whiteColor()
+        trendingCell.tweetVolumeLabel.textColor = UIColor.whiteColor()
+        trendingCell.mentionsLabel.textColor = UIColor.whiteColor()
         
         return trendingCell
     }

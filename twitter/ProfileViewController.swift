@@ -56,6 +56,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             print(error)
         }
         
+        profPicView.layer.cornerRadius = profPicView.frame.height/12
 
         // Do any additional setup after loading the view.
     }

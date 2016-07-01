@@ -61,6 +61,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        
+        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(loadHomeTimeline(_:)), forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)

@@ -40,6 +40,19 @@ class TwitterClientSM: BDBOAuth1SessionManager {
         
     }
     
+    func mentions(success: [Tweet] -> (), failure: NSError -> ()) {
+        GET("1.1/statuses/retweets_of_me.json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
+            let dictionaries = response as! [NSDictionary]
+            
+            let tweets = Tweet.tweetsWithArray(dictionaries)
+            print(tweets)
+            success(tweets)
+
+        }) { (task: NSURLSessionDataTask?, error: NSError) in
+                failure(error)
+        }
+    }
+    
     func closestTrends(parameters: NSDictionary, success: Int -> (), failure: NSError -> ()) {
         GET("1.1/trends/closest.json", parameters: parameters, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
             let dictionaries = response as! [NSDictionary]
@@ -80,9 +93,11 @@ class TwitterClientSM: BDBOAuth1SessionManager {
         })
         
     }
-    
-    /*func unretweet(tweet: Tweet) {
-            if tweet.retweeted
+    /*
+    func unretweet(tweet: Tweet) {
+        if tweet.retweeted {
+            if tweet.
+        }
     }*/
     
     func newTweet(text: NSDictionary, success: (Tweet) -> (), failure: NSError -> ()) {

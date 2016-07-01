@@ -54,6 +54,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         }) { (request: NSURLRequest, response: NSHTTPURLResponse?, error: NSError) in
             print(error)
         }
+        profPicView.layer.cornerRadius = profPicView.frame.height/12
         
         let backgroundRequest = NSURLRequest(URL: (user?.backgroundUrl)!)
         profPicView.setImageWithURLRequest(backgroundRequest, placeholderImage: UIImage(), success: { (request: NSURLRequest, response: NSHTTPURLResponse?, image: UIImage) in

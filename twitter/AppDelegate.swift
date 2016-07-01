@@ -29,12 +29,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let profileViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController")
             profileViewController.tabBarItem.title = "Profile"
 
+            
+            let mentionsViewController = storyboard.instantiateViewControllerWithIdentifier("MentionsViewController")
+            mentionsViewController.tabBarItem.title = "Mentions"
             let vc = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
             
             let containerViewController = ContainerViewController()
             containerViewController.tabBarItem.title = "Home"
             
-            vc.viewControllers = [containerViewController, profileViewController]
+            vc.viewControllers = [containerViewController, mentionsViewController, profileViewController]
             
             window!.rootViewController = vc
 
