@@ -57,7 +57,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         profPicView.layer.cornerRadius = profPicView.frame.height/12
         
         let backgroundRequest = NSURLRequest(URL: (user?.backgroundUrl)!)
-        profPicView.setImageWithURLRequest(backgroundRequest, placeholderImage: UIImage(), success: { (request: NSURLRequest, response: NSHTTPURLResponse?, image: UIImage) in
+        backgroundView.setImageWithURLRequest(backgroundRequest, placeholderImage: UIImage(), success: { (request: NSURLRequest, response: NSHTTPURLResponse?, image: UIImage) in
             self.backgroundView.image = image
         }) { (request: NSURLRequest, response: NSHTTPURLResponse?, error: NSError) in
             print(error)
@@ -66,6 +66,50 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         
 
+
+    }
+    
+    @IBAction func onRT(sender: AnyObject) {
+        
+        let button = sender as! UIButton
+        let view = button.superview!
+        let cell = view.superview as! TweetCell
+        let indexPath = tableView.indexPathForCell(cell)
+        
+        let tweet = tweets![(indexPath?.row)!]
+        tweet.RTs = tweet.RTs + 1
+        cell.RTLabel.text = "\(tweet.RTs)"
+        
+        TwitterClientSM.sharedInstance.retweet(tweet.id, success: { (tweet: Tweet) in
+            self.tweets?.append(tweet)
+            self.tableView.reloadData()
+            }, failure:  { (error: NSError) in
+                print(error)
+        })
+
+    }
+    @IBAction func onFave(sender: AnyObject) {
+        let button = sender as! UIButton
+        let view = button.superview!
+        let cell = view.superview as! TweetCell
+        let indexPath = tableView.indexPathForCell(cell)
+        
+        let tweet = tweets![(indexPath?.row)!]
+        
+        
+        if !tweet.favorited! {
+            tweet.faves = tweet.faves + 1
+            cell.faveLabel.text = "\(tweet.faves)"
+            let favorited = UIImage(named: "favorited")
+            cell.faveButton.setImage(favorited, forState: UIControlState.Normal)
+            TwitterClientSM.sharedInstance.fave(tweet.id, success: { (tweet: Tweet) in
+                self.tableView.reloadData()
+                }, failure: { (error: NSError) in
+                    print(error)
+            })
+        }
+        
+        
 
     }
     

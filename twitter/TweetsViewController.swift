@@ -146,15 +146,25 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let indexPath = tableView.indexPathForCell(cell)
         
         let tweet = tweets![(indexPath?.row)!]
-        tweet.RTs = tweet.RTs + 1
-        cell.RTLabel.text = "\(tweet.RTs)"
+        print(tweet.favorited)
+        print("2")
+        if !tweet.favorited! {
+            tweet.favorited = true
+            print(tweet.favorited)
+            tweet.RTs = tweet.RTs + 1
+            cell.RTLabel.text = "\(tweet.RTs)"
+            
+            TwitterClientSM.sharedInstance.retweet(tweet.id, success: { (tweet: Tweet) in
+                self.tweets?.append(tweet)
+                self.tableView.reloadData()
+                }, failure:  { (error: NSError) in
+                    print(error)
+            })
+            tableView.reloadData()
+            
+
+        }
         
-        TwitterClientSM.sharedInstance.retweet(tweet.id, success: { (tweet: Tweet) in
-            self.tweets?.append(tweet)
-            self.tableView.reloadData()
-        }, failure:  { (error: NSError) in
-                print(error)
-        })
         
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

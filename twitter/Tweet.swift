@@ -20,6 +20,7 @@ class Tweet: NSObject {
     var faves: Int = 0
     var in_reply_to_status_id: Int?
     var retweeted: Bool?
+    var favorited: Bool?
     
     init(dictionary: NSDictionary) {
         text = dictionary["text"] as? String
@@ -47,6 +48,8 @@ class Tweet: NSObject {
         faves = dictionary["favorite_count"] as? Int ?? 0
         
         retweeted = dictionary["retweeted"] as? Bool
+        
+        favorited = dictionary["favorited"] as? Bool
         
         if dictionary["in_reply_to_status_id"] != nil {
             in_reply_to_status_id = dictionary["in_reply_to_status_id"] as? Int

@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var backgroundView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profPicView: UIImageView!
@@ -30,16 +31,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        
 
         let user = User.currentUser
-        
-        TwitterClientSM.sharedInstance.profileTimeline((user!.screenname)! as String, success: { (tweets: [Tweet]) in
-            self.tweets = tweets
-            self.tableView.reloadData()
-            
-            }, failure: { (error: NSError) in
-                print(error)
-        })
         
         nameLabel.text = user!.name as? String
         let twitterName = user!.screenname as! String
@@ -57,10 +52,35 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         profPicView.layer.cornerRadius = profPicView.frame.height/12
+        
+        TwitterClientSM.sharedInstance.currentAccount({ (user: User) in
+            print(user.backgroundUrl)
+        }) { (error: NSError) in
+                print(error)
+        }
+        
+        let backgroundRequest = NSURLRequest(URL: (user?.backgroundUrl)!)
+        print("printing \(user?.backgroundUrl)")
+        backgroundView.setImageWithURLRequest(backgroundRequest, placeholderImage: UIImage(), success: { (request: NSURLRequest, response: NSHTTPURLResponse?, image: UIImage) in
+            self.backgroundView.image = image
+        }) { (request: NSURLRequest, response: NSHTTPURLResponse?, error: NSError) in
+            print(error)
+        }
 
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        let user = User.currentUser
+        
+        TwitterClientSM.sharedInstance.profileTimeline((user!.screenname)! as String, success: { (tweets: [Tweet]) in
+            self.tweets = tweets
+            self.tableView.reloadData()
+            
+            }, failure: { (error: NSError) in
+                print(error)
+        })
+    }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -99,6 +119,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             let tweet = tweets![(indexPath?.row)!]
             composeVC.replyUser = tweet.author?.screenname as? String
+        }
+        else if segue.identifier == "profileDetailSegue" {
+            let detailVC = segue.destinationViewController as! DetailViewController
+            
+            let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
+            let tweet = tweets![indexPath!.row]
+            detailVC.tweet = tweet
+            
         }
     }
     
