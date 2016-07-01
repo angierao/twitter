@@ -8,6 +8,7 @@
 
 import UIKit
 import BDBOAuth1Manager
+import CoreLocation
 
 class TwitterClientSM: BDBOAuth1SessionManager {
 
@@ -38,6 +39,30 @@ class TwitterClientSM: BDBOAuth1SessionManager {
         NSNotificationCenter.defaultCenter().postNotificationName(User.userDidLogoutNotif, object: nil)
         
     }
+    
+    func closestTrends(parameters: NSDictionary, success: Int -> (), failure: NSError -> ()) {
+        GET("1.1/trends/closest.json", parameters: parameters, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
+            let dictionaries = response as! [NSDictionary]
+            let loc = dictionaries[0]
+            //print("\(loc["woeid"] as! Int)")
+            success(loc["woeid"] as! Int)
+        }) { (task: NSURLSessionDataTask?, error: NSError) in
+                failure(error)
+        }
+    }
+    
+    func trends(woeid: NSDictionary, success: [Trend] -> (), failure: NSError -> ()) {
+        GET("1.1/trends/place.json", parameters: woeid, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
+            let array = response as! NSArray
+            let dictionaries = array[0].valueForKeyPath("trends") as! [NSDictionary]
+            //print(dictionaries)
+            let trends = Trend.trendsWithArray(dictionaries)
+            success(trends)
+        }) { (task: NSURLSessionDataTask?, error: NSError) in
+                failure(error)
+        }
+    }
+    
     
     func retweet(id: Int, success: (Tweet) -> (), failure: NSError -> ()) {
         print("1.1/statuses/retweet/\(id).json")
