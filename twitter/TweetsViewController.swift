@@ -25,7 +25,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var isMoreDataLoading = false
     
     @IBAction func trendingTapped(sender: AnyObject) {
-        print("trending tapped")
         delegate?.toggleLeftPanel()
     }
     
@@ -43,6 +42,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         composeButton()
         
+        firstLoad()
+        
         // Set up Infinite Scroll loading indicator
         
         let frame = CGRectMake(0, tableView.contentSize.height, tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
@@ -59,6 +60,30 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(loadHomeTimeline(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
+        
+    }
+    
+    func firstLoad() {
+        let parameters: NSDictionary = [
+            "count": tweetsLoaded
+        ]
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        TwitterClientSM.sharedInstance.homeTimeline(parameters, success: { (tweets: [Tweet]) in
+            
+            self.tweets = tweets
+            self.tableView.reloadData()
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
+            }, failure: { (error: NSError) in
+                print(error)
+        })
+
+    }
+    
+    func loadHomeTimeline(refreshControl: UIRefreshControl) {
         let parameters: NSDictionary = [
             "count": tweetsLoaded
         ]
@@ -66,10 +91,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             self.tweets = tweets
             self.tableView.reloadData()
+            refreshControl.endRefreshing()
             }, failure: { (error: NSError) in
                 print(error)
         })
-        
     }
     
     func composeButton() {
@@ -147,7 +172,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let parameters: NSDictionary = [
             "count": tweetsLoaded
         ]
-        print(tweetsLoaded)
         TwitterClientSM.sharedInstance.homeTimeline(parameters, success: { (tweets: [Tweet]) in
             
             self.tweets = tweets
