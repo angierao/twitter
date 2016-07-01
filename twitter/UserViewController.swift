@@ -62,11 +62,6 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         }) { (request: NSURLRequest, response: NSHTTPURLResponse?, error: NSError) in
             print(error)
         }
-
-        
-        
-
-
     }
     
     @IBAction func onRT(sender: AnyObject) {
@@ -91,18 +86,33 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func onFave(sender: AnyObject) {
         let button = sender as! UIButton
         let view = button.superview!
-        let cell = view.superview as! TweetCell
+        let cell = view.superview as! UserTweetCell
         let indexPath = tableView.indexPathForCell(cell)
         
         let tweet = tweets![(indexPath?.row)!]
         
+        let grayHeart = UIImagePNGRepresentation(UIImage(named: "favorite-action")!)
+        let buttonImage = UIImagePNGRepresentation(button.currentImage!)
         
-        if !tweet.favorited! {
+        if grayHeart!.isEqualToData(buttonImage!) {
+            print("1")
             tweet.faves = tweet.faves + 1
             cell.faveLabel.text = "\(tweet.faves)"
             let favorited = UIImage(named: "favorited")
             cell.faveButton.setImage(favorited, forState: UIControlState.Normal)
             TwitterClientSM.sharedInstance.fave(tweet.id, success: { (tweet: Tweet) in
+                self.tableView.reloadData()
+                }, failure: { (error: NSError) in
+                    print(error)
+            })
+        }
+        else {
+            print("2")
+            tweet.faves = tweet.faves - 1
+            cell.faveLabel.text = "\(tweet.faves)"
+            let favorite = UIImage(named: "favorite-action")
+            cell.faveButton.setImage(favorite, forState: UIControlState.Normal)
+            TwitterClientSM.sharedInstance.unfave(tweet.id, success: { (tweet: Tweet) in
                 self.tableView.reloadData()
                 }, failure: { (error: NSError) in
                     print(error)
@@ -120,6 +130,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let userTweetCell = tableView.dequeueReusableCellWithIdentifier("UserTweetCell") as! UserTweetCell
         userTweetCell.tweet = tweets![indexPath.row]
+        userTweetCell.selectionStyle = UITableViewCellSelectionStyle.None
         return userTweetCell
     }
 
@@ -136,8 +147,17 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
-        if segue.identifier == "userDetailSegue" {
+        if segue.identifier == "userReplySegue" {
+            let composeVC = segue.destinationViewController as! ComposeViewController
+            let button = sender as! UIButton
+            let view = button.superview!
+            let cell = view.superview as! UserTweetCell
+            let indexPath = tableView.indexPathForCell(cell)
+            
+            let tweet = tweets![(indexPath?.row)!]
+            composeVC.replyUser = tweet.author?.screenname as? String
+        }
+        else if segue.identifier == "userDetailSegue" {
             let detailVC = segue.destinationViewController as! DetailViewController
             
             let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)

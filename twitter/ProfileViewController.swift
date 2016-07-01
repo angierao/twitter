@@ -90,7 +90,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let profileCell = tableView.dequeueReusableCellWithIdentifier("ProfileCell") as! ProfileCell
         profileCell.tweet = tweets![indexPath.row]
-        
+        profileCell.selectionStyle = UITableViewCellSelectionStyle.None
         return profileCell
         
         

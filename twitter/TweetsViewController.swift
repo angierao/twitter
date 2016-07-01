@@ -128,15 +128,34 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let indexPath = tableView.indexPathForCell(cell)
         
         let tweet = tweets![(indexPath?.row)!]
-        tweet.faves = tweet.faves + 1
-        cell.faveLabel.text = "\(tweet.faves)"
         
-        TwitterClientSM.sharedInstance.fave(tweet.id, success: { (tweet: Tweet) in
-            self.tableView.reloadData()
-        }, failure: { (error: NSError) in
-                print(error)
-        })
+        let grayHeart = UIImagePNGRepresentation(UIImage(named: "favorite-action")!)
+        let buttonImage = UIImagePNGRepresentation(button.currentImage!)
         
+        if grayHeart!.isEqualToData(buttonImage!) {
+            print("1")
+            tweet.faves = tweet.faves + 1
+            cell.faveLabel.text = "\(tweet.faves)"
+            let favorited = UIImage(named: "favorited")
+            cell.faveButton.setImage(favorited, forState: UIControlState.Normal)
+            TwitterClientSM.sharedInstance.fave(tweet.id, success: { (tweet: Tweet) in
+                self.tableView.reloadData()
+                }, failure: { (error: NSError) in
+                    print(error)
+            })
+        }
+        else {
+            print("2")
+            tweet.faves = tweet.faves - 1
+            cell.faveLabel.text = "\(tweet.faves)"
+            let favorite = UIImage(named: "favorite-action")
+            cell.faveButton.setImage(favorite, forState: UIControlState.Normal)
+            TwitterClientSM.sharedInstance.unfave(tweet.id, success: { (tweet: Tweet) in
+                self.tableView.reloadData()
+                }, failure: { (error: NSError) in
+                    print(error)
+            })
+        }
     }
     
     @IBAction func onRT(sender: AnyObject) {
@@ -175,6 +194,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let tweetCell = tableView.dequeueReusableCellWithIdentifier("TweetCell") as! TweetCell
         
         tweetCell.tweet = self.tweets![indexPath.row]
+        tweetCell.selectionStyle = UITableViewCellSelectionStyle.None
         
         return tweetCell
     }

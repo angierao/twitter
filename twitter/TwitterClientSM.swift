@@ -122,6 +122,16 @@ class TwitterClientSM: BDBOAuth1SessionManager {
         })
         
     }
+    
+    func unfave(id: Int, success: (Tweet) -> (), failure: NSError -> ()) {
+        POST("1.1/favorites/destroy.json?id=\(id)", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
+            let dictionary = response as! NSDictionary
+            let tweet = Tweet(dictionary: dictionary)
+            success(tweet)
+        }) { (task: NSURLSessionDataTask?, error: NSError) in
+                failure(error)
+        }
+    }
     func handleOpenUrl(url: NSURL) {
         let requestToken = BDBOAuth1Credential(queryString: url.query)
         fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential!) in
