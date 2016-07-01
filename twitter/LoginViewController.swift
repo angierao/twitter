@@ -19,7 +19,31 @@ class LoginViewController: UIViewController {
 
     @IBAction func onLogIn(sender: AnyObject) {
         TwitterClientSM.sharedInstance.login({
-            self.performSegueWithIdentifier("loginSegue", sender: nil)
+            //self.performSegueWithIdentifier("loginSegue", sender: nil)
+            
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            
+            let profileViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileNavigationController")
+            profileViewController.tabBarItem.title = "Profile"
+            
+            
+            let mentionsViewController = storyboard.instantiateViewControllerWithIdentifier("MentionsNavigationController")
+            mentionsViewController.tabBarItem.title = "Mentions"
+            let vc = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
+            
+            let containerViewController = ContainerViewController()
+            containerViewController.tabBarItem.title = "Home"
+            containerViewController.tabBarItem.image = UIImage(named: "home-ios-icon")
+            
+            vc.viewControllers = [containerViewController, mentionsViewController, profileViewController]
+            
+            self.presentViewController(vc, animated: true, completion: { 
+                print("loggin in")
+            })
+            
+            
         }) { (error: NSError) in
             print(error.localizedDescription)
         }

@@ -25,14 +25,20 @@ class MentionsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.rowHeight = UITableViewAutomaticDimension
 
         
+        
+
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         TwitterClientSM.sharedInstance.mentions({ (tweets: [Tweet]) in
             self.tweets = tweets
             self.tableView.reloadData()
         }) { (error: NSError) in
-                print(error)
+            print(error)
         }
-
-        // Do any additional setup after loading the view.
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

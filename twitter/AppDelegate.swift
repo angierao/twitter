@@ -17,14 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
+        UITabBar.appearance().barTintColor = UIColor(red: 85/255, green: 172/255, blue: 238/255, alpha: 1.0)
+        UITabBar.appearance().tintColor = UIColor.whiteColor()
+
         if User.currentUser != nil {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            let tweetsViewController = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController")
-            tweetsViewController.tabBarItem.title = "Home"
-            //homeViewController.tabBarItem.image = UIImage(named: "movies")
             
             let profileViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileNavigationController")
             profileViewController.tabBarItem.title = "Profile"
@@ -32,10 +31,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let mentionsViewController = storyboard.instantiateViewControllerWithIdentifier("MentionsNavigationController")
             mentionsViewController.tabBarItem.title = "Mentions"
+            mentionsViewController.tabBarItem.image = UIImage(named: "bell")
             let vc = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
             
             let containerViewController = ContainerViewController()
             containerViewController.tabBarItem.title = "Home"
+            containerViewController.tabBarItem.image = UIImage(named: "home-ios-icon")
             
             vc.viewControllers = [containerViewController, mentionsViewController, profileViewController]
             
