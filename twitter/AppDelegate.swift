@@ -26,11 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tweetsViewController.tabBarItem.title = "Home"
             //homeViewController.tabBarItem.image = UIImage(named: "movies")
             
-            let profileViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController")
+            let profileViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileNavigationController")
             profileViewController.tabBarItem.title = "Profile"
 
             
-            let mentionsViewController = storyboard.instantiateViewControllerWithIdentifier("MentionsViewController")
+            let mentionsViewController = storyboard.instantiateViewControllerWithIdentifier("MentionsNavigationController")
             mentionsViewController.tabBarItem.title = "Mentions"
             let vc = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
             
