@@ -16,31 +16,19 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIAlertViewDe
     @IBOutlet weak var tweetButton: UIButton!
     @IBOutlet weak var charsLeft: UILabel!
     @IBOutlet weak var tweetView: UITextView!
-    
+    var tweet: Tweet?
     var replyUser: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tweetView.delegate = self
         self.tweetView.becomeFirstResponder()
-        // Do any additional setup after loading the view.
-        
-        //CGRect frameRect = composeField.frame
-        
-        //tweetView = UITextView(frame: CGRect(x: 20, y: 80,
-            //width: self.view.frame.size.width - 40, height: 40))
-        //self.view.addSubview(tweetView!)
-        
+        // Do any additional setup after loading the view
         
         if let replyUser = replyUser {
             if replyUser.characters.count > 0 {
                 applyPlaceholderStyle(tweetView!, placeholderText: "@\(replyUser) ")
             }
-            
         }
-        print("tweet")
-        print(self.tweetView.text)
-        
-        //self.tweetView.textColor = UIColor.lightGrayColor()
         
         if let replyUser = replyUser {
             let textLength = maxChars - (replyUser.characters.count + 2)
@@ -50,21 +38,13 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIAlertViewDe
             charsLeft.text = "\(maxChars)"
         }
         
-        //charsLeft.text = "\(maxChars - (((replyUser?.characters.count)! + 2) ?? 0))"
-        
-        
         cancelButton.layer.cornerRadius = cancelButton.frame.height/6
-        
-        tweetButton.backgroundColor = UIColor(red: 85/255, green: 172/255, blue: 238/255, alpha: 1.0)
-        
-        tweetButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        
         cancelButton.backgroundColor = UIColor.whiteColor()
-        
         cancelButton.setTitleColor(UIColor(red: 85/255, green: 172/255, blue: 238/255, alpha: 1.0), forState: UIControlState.Normal)
         
+        tweetButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         tweetButton.layer.cornerRadius = tweetButton.frame.height/6
-        tweetButton.enabled = false
+        tweetButton.backgroundColor = UIColor(red: 85/255, green: 172/255, blue: 238/255, alpha: 1.0)
         
         charsLeft.textColor = .lightGrayColor()
         
@@ -101,11 +81,13 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIAlertViewDe
         }
         
         let dict: NSDictionary = [
-            "status": tweetText!
+            "status": tweetText!,
+            "in_reply_to_status_id": (tweet?.id)!
         ]
         
         TwitterClientSM.sharedInstance.newTweet(dict, success: { (tweet: Tweet) in
-            print("tweeted")
+            print(tweet)
+            print(tweet.in_reply_to_status_id)
             self.dismissViewControllerAnimated(true, completion: nil)
         }, failure: { (error: NSError) in
                 print(error)

@@ -58,7 +58,18 @@ class User: NSObject {
             else {
                 return NSURL(string: "")
             }
-            
+        }
+    }
+    
+    var followers: Int {
+        get {
+            return (dictionary["followers_count"] as? Int)!
+        }
+    }
+    
+    var following: Int {
+        get {
+            return (dictionary["friends_count"] as? Int)!
         }
     }
     

@@ -19,6 +19,8 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var twitterNameLabel: UILabel!
     @IBOutlet weak var backgroundView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var followingLabel: UILabel!
+    @IBOutlet weak var followersLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +42,9 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         let twitterName = user!.screenname as! String
         twitterNameLabel.text = "@\(twitterName)"
         descriptionLabel.text = user?.tagline as? String
+        
+        followingLabel.text = "\(user!.following)"
+        followersLabel.text = "\(user!.followers)"
         let imageRequest = NSURLRequest(URL: user!.profileUrl!)
         
         profPicView.setImageWithURLRequest(imageRequest, placeholderImage: UIImage(named: "defaulttwitter"), success: { (request: NSURLRequest, response: NSHTTPURLResponse?, image: UIImage) in

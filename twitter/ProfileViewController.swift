@@ -16,6 +16,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var twitterNameLabel: UILabel!
     
+    @IBOutlet weak var followersLabel: UILabel!
+    @IBOutlet weak var followingLabel: UILabel!
     var tweets: [Tweet]?
     
     override func viewDidLoad() {
@@ -39,6 +41,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         twitterNameLabel.text = "@\(twitterName)"
         descriptionLabel.text = user!.tagline as? String
         let imageRequest = NSURLRequest(URL: user!.profileUrl!)
+        
+        followersLabel.text = "\(user!.followers)"
+        followingLabel.text = "\(user!.following)"
         
         profPicView.setImageWithURLRequest(imageRequest, placeholderImage: UIImage(named: "defaulttwitter"), success: { (request: NSURLRequest, response: NSHTTPURLResponse?, image: UIImage) in
             self.profPicView.image = image

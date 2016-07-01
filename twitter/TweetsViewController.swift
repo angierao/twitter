@@ -21,9 +21,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //navigationController!.navigationBar.barTintColor = UIColor(red: 85/255, green: 172/255, blue: 238/255, alpha: 1.0)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.estimatedRowHeight = 150
+        tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
         
         composeButton()
@@ -59,9 +60,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func composeButton() {
         let button: UIButton = UIButton(type: UIButtonType.Custom)
-        button.setImage(UIImage(named: "compose.png"), forState: UIControlState.Normal)
+        button.setImage(UIImage(named: "compose_tweet.png"), forState: UIControlState.Normal)
         button.addTarget(self, action: #selector(TweetsViewController.compose), forControlEvents: UIControlEvents.TouchUpInside)
-        button.frame = CGRectMake(0, 0, 20, 20)
+        button.frame = CGRectMake(0, 0, 33, 30)
         
         let barButton = UIBarButtonItem(customView: button)
         //assign button to navigationbar
@@ -205,6 +206,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let indexPath = tableView.indexPathForCell(cell)
             
             let tweet = tweets![(indexPath?.row)!]
+            composeVC.tweet = tweet
             composeVC.replyUser = tweet.author?.screenname as? String
             
         }

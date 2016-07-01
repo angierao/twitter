@@ -18,6 +18,7 @@ class Tweet: NSObject {
     var id: Int = 0
     var RTs: Int = 0
     var faves: Int = 0
+    var in_reply_to_status_id: Int?
     
     init(dictionary: NSDictionary) {
         text = dictionary["text"] as? String
@@ -35,16 +36,20 @@ class Tweet: NSObject {
             timestamp = formatter.dateFromString(timestampString)
         }
         
-        //let creationDate = NSDateComponents()
+        let userDictionary = dictionary["user"] as! NSDictionary
+        author = User(dictionary: userDictionary)
+        
+        id = dictionary["id"] as! Int
+        
+        RTs = dictionary["retweet_count"] as? Int ?? 0
+        
+        faves = dictionary["favorite_count"] as? Int ?? 0
+        
+        if dictionary["in_reply_to_status_id"] != nil {
+            in_reply_to_status_id = dictionary["in_reply_to_status_id"] as? Int
+        }
         
         let creationDate = NSCalendar.currentCalendar().components([.Year, .Month, .Day, .Hour , .Minute, .Second], fromDate: timestamp!)
-        
-        //var createdAtString = NSDate()
-//        if let timestampString = timestampString {
-//            let formatter = NSDateFormatter()
-//            formatter.dateFormat = "ss.mm.HH.yy.MM.dd"
-//            timestamp = formatter.dateFromString(timestampString)!
-//        }
         
         let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
@@ -64,13 +69,6 @@ class Tweet: NSObject {
         currentDate.hour = hour
         currentDate.minute = min
         currentDate.second = sec
-        
-        //let today = NSCalendar.currentCalendar().dateFromComponents(currentDate)!
-        
-        //let dateFormatter = NSDateFormatter()
-        //let date = NSDate()
-        //dateFormatter.dateFormat = "ss.mm.HH.yy.MM.dd"
-        //let dateString = dateFormatter.stringFromDate(today)
         
         let creationDay = NSCalendar.currentCalendar().dateFromComponents(creationDate)!
         
@@ -123,16 +121,6 @@ class Tweet: NSObject {
         else {
             timeString = dateFormatter.stringFromDate(creationDay)
         }
-        
-        
-        let userDictionary = dictionary["user"] as! NSDictionary
-        author = User(dictionary: userDictionary)
-        
-        id = dictionary["id"] as! Int
-        
-        RTs = dictionary["retweet_count"] as? Int ?? 0
-        
-        faves = dictionary["favorite_count"] as? Int ?? 0
         
     }
     
