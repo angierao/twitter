@@ -81,6 +81,10 @@ class TwitterClientSM: BDBOAuth1SessionManager {
         
     }
     
+    /*func unretweet(tweet: Tweet) {
+            if tweet.retweeted
+    }*/
+    
     func newTweet(text: NSDictionary, success: (Tweet) -> (), failure: NSError -> ()) {
         POST("1.1/statuses/update.json", parameters: text, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
             let tweet = Tweet(dictionary: response as! NSDictionary)

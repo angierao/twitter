@@ -22,11 +22,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            let vc = storyboard.instantiateViewControllerWithIdentifier("TabBarController")
+            let tweetsViewController = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController")
+            tweetsViewController.tabBarItem.title = "Home"
+            //homeViewController.tabBarItem.image = UIImage(named: "movies")
+            
+            let profileViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController")
+            profileViewController.tabBarItem.title = "Profile"
+
+            let vc = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
             
             let containerViewController = ContainerViewController()
+            containerViewController.tabBarItem.title = "Home"
             
-            window!.rootViewController = containerViewController
+            vc.viewControllers = [containerViewController, profileViewController]
+            
+            window!.rootViewController = vc
 
             
             
