@@ -27,6 +27,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
         
+        let imageView = UIImageView(image: UIImage(named: "twitterbirdsmall"))
+        self.navigationItem.titleView = imageView
+        
         composeButton()
         
         // Set up Infinite Scroll loading indicator
@@ -60,9 +63,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func composeButton() {
         let button: UIButton = UIButton(type: UIButtonType.Custom)
-        button.setImage(UIImage(named: "compose_tweet.png"), forState: UIControlState.Normal)
+        button.setImage(UIImage(named: "composetweet.png"), forState: UIControlState.Normal)
         button.addTarget(self, action: #selector(TweetsViewController.compose), forControlEvents: UIControlEvents.TouchUpInside)
-        button.frame = CGRectMake(0, 0, 33, 30)
+        button.frame = CGRectMake(0, 0, 30, 30)
         
         let barButton = UIBarButtonItem(customView: button)
         //assign button to navigationbar

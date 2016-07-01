@@ -27,11 +27,8 @@ class UserTweetCell: UITableViewCell {
             nameLabel.text = user.name as? String
             let twitterName = user.screenname as! String
             twitterNameLabel.text = "@\(twitterName)"
-            
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "MMM d, h:mm a"
-            let dateString = dateFormatter.stringFromDate(tweet.timestamp!)
-            timeLabel.text = dateString
+
+            timeLabel.text = tweet.timeString
             
             tweetLabel.text = tweet.text as? String
             
@@ -46,6 +43,7 @@ class UserTweetCell: UITableViewCell {
             }) { (request: NSURLRequest, response: NSHTTPURLResponse?, error: NSError) in
                 print(error)
             }
+            profPicView.layer.cornerRadius = profPicView.frame.height/12
         }
     }
 

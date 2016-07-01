@@ -50,6 +50,8 @@ class TweetCell: UITableViewCell {
             }) { (request: NSURLRequest, response: NSHTTPURLResponse?, error: NSError) in
                     print(error)
             }
+            
+            profPicView.layer.cornerRadius = profPicView.frame.height/12
         }
     }
     

@@ -41,7 +41,7 @@ class DetailViewController: UIViewController {
                 twitterName.text = "@\(twitterNameString)"
                 
                 let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "MMM d, h:mm a"
+                dateFormatter.dateFormat = "M/d/yy, h:mm a"
         
                 if let timestamp = tweet?.timestamp {
                     let dateString = dateFormatter.stringFromDate(timestamp)
@@ -53,9 +53,9 @@ class DetailViewController: UIViewController {
                 
                 tweetLabel.text = tweet!.text as? String
                 
-                RTLabel.text = "\(tweet!.RTs) RETWEETS"
+                RTLabel.text = "\(tweet!.RTs)"
                 
-                faveLabel.text = "\(tweet!.faves) LIKES"
+                faveLabel.text = "\(tweet!.faves)"
                 
                 let imageRequest = NSURLRequest(URL: user.profileUrl!)
                 
