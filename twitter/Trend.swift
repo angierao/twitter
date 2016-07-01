@@ -10,12 +10,17 @@ import UIKit
 
 class Trend: NSObject {
     var name: String?
-    var tweetVolume: Int?
+    var tweetVolume: Int!
     var url: String?
     
     init(dictionary: NSDictionary) {
         name = dictionary["name"] as? String
-        tweetVolume = dictionary["tweet_volume"] as? Int
+        if let tweetVolume = dictionary["tweet_volume"] as? Int {
+            self.tweetVolume = tweetVolume
+        }
+        else {
+            self.tweetVolume = 0
+        }
         url = dictionary["url"] as? String
     }
     

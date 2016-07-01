@@ -18,7 +18,14 @@ class TrendingCell: UITableViewCell {
     var trend: Trend! {
         didSet {
             nameLabel.text = trend?.name
-            tweetVolumeLabel.text = "\(trend?.tweetVolume)"
+            if trend.tweetVolume != 0 {
+                tweetVolumeLabel.text = "\(trend!.tweetVolume)"
+            }
+            else {
+                tweetVolumeLabel.text = "Trending"
+                mentionsLabel.hidden = true
+            }
+            
         }
     }
 

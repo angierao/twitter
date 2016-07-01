@@ -23,6 +23,24 @@ class TrendingViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
+    @IBAction func trendButtonTapped(sender: AnyObject) {
+        let button = sender as! UIButton
+        let view = button.superview!
+        let cell = view.superview as! TrendingCell
+        let indexPath = tableView.indexPathForCell(cell)
+        let trend = trends![(indexPath?.row)!]
+        let url = NSURL(string: trend.url!)
+        UIApplication.sharedApplication().openURL(url!)
+    }
+    @IBAction func trendTapped(sender: UITapGestureRecognizer) {
+        print("tapped")
+        let view = sender.view
+        let cell = view?.superview as! TrendingCell
+        let indexPath = tableView.indexPathForCell(cell)
+        let trend = trends![(indexPath?.row)!]
+        let url = NSURL(string: trend.url!)
+        UIApplication.sharedApplication().openURL(url!)
+    }
     override func viewWillAppear(animated: Bool) {
         locManager.delegate = self
         locManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -34,12 +52,12 @@ class TrendingViewController: UIViewController, UITableViewDelegate, UITableView
             CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Authorized)
         {
             print(locManager.location?.coordinate.latitude)
-            var parameters : NSDictionary = [
+            let parameters : NSDictionary = [
                 "lat": (locManager.location?.coordinate.latitude)!,
                 "long": (locManager.location?.coordinate.longitude)!
             ]
             TwitterClientSM.sharedInstance.closestTrends(parameters, success: { (woeid: Int) in
-                var parameters : NSDictionary = [
+                let parameters : NSDictionary = [
                     "id": woeid
                 ]
                     TwitterClientSM.sharedInstance.trends(parameters, success: { (trends: [Trend]) in
