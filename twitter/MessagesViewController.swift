@@ -8,13 +8,36 @@
 
 import UIKit
 
-class MessagesViewController: UIViewController {
+class MessagesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var messages: [Message]?
 
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        TwitterClientSM.sharedInstance.messages({ (messages: [Message]) in
+            self.messages = messages
+            self.tableView.reloadData()
+        }) { (error: NSError) in
+                print(error)
+        }
 
         // Do any additional setup after loading the view.
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages?.count ?? 0
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let messageCell = tableView.dequeueReusableCellWithIdentifier("MessageCell") as! MessageCell
+        messageCell.message = messages![indexPath.row]
+        
+        return messageCell
     }
 
     override func didReceiveMemoryWarning() {

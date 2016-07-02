@@ -40,12 +40,26 @@ class TwitterClientSM: BDBOAuth1SessionManager {
         
     }
     
+    func messages(success: [Message] -> (), failure: NSError -> ()) {
+        GET("1.1/direct_messages/sent.json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
+            print("message good")
+            let dictionaries = response as! [NSDictionary]
+            print(dictionaries)
+            let messages = Message.messagesWithArray(dictionaries)
+            print(messages)
+            success(messages)
+        }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
+                print("message bad")
+                failure(error)
+        })
+    }
+    
     func mentions(success: [Tweet] -> (), failure: NSError -> ()) {
         GET("1.1/statuses/retweets_of_me.json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
             let dictionaries = response as! [NSDictionary]
             
             let tweets = Tweet.tweetsWithArray(dictionaries)
-            print(tweets)
+            //print(tweets)
             success(tweets)
 
         }) { (task: NSURLSessionDataTask?, error: NSError) in

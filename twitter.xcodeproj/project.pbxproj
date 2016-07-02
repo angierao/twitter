@@ -20,6 +20,8 @@
 		AF4553BF1D262F76002EAE64 /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4553BE1D262F76002EAE64 /* TrendingCell.swift */; };
 		AF4553C11D263498002EAE64 /* Trend.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4553C01D263498002EAE64 /* Trend.swift */; };
 		AF5854071D273A1C00D3249C /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5854061D273A1C00D3249C /* MessagesViewController.swift */; };
+		AF5854091D273D7A00D3249C /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5854081D273D7A00D3249C /* MessageCell.swift */; };
+		AF58540B1D273D8E00D3249C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF58540A1D273D8E00D3249C /* Message.swift */; };
 		AF5E680D1D21BA370008AF54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5E680C1D21BA370008AF54 /* AppDelegate.swift */; };
 		AF5E68121D21BA370008AF54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF5E68101D21BA370008AF54 /* Main.storyboard */; };
 		AF5E68141D21BA370008AF54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF5E68131D21BA370008AF54 /* Assets.xcassets */; };
@@ -72,6 +74,8 @@
 		AF4553BE1D262F76002EAE64 /* TrendingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
 		AF4553C01D263498002EAE64 /* Trend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trend.swift; sourceTree = "<group>"; };
 		AF5854061D273A1C00D3249C /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		AF5854081D273D7A00D3249C /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		AF58540A1D273D8E00D3249C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		AF5E68091D21BA370008AF54 /* twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF5E680C1D21BA370008AF54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF5E68111D21BA370008AF54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -148,6 +152,7 @@
 				AF5E684A1D21D1A80008AF54 /* TweetCell.swift */,
 				AF4553BE1D262F76002EAE64 /* TrendingCell.swift */,
 				AF23BA511D26E91E007ED1CB /* MentionCell.swift */,
+				AF5854081D273D7A00D3249C /* MessageCell.swift */,
 			);
 			name = "Table View Cells";
 			sourceTree = "<group>";
@@ -215,6 +220,7 @@
 				AF5E683F1D21C4400008AF54 /* User.swift */,
 				AF5E68411D21C44A0008AF54 /* Tweet.swift */,
 				AF4553C01D263498002EAE64 /* Trend.swift */,
+				AF58540A1D273D8E00D3249C /* Message.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -528,11 +534,13 @@
 				AF5E683B1D21BB490008AF54 /* LoginViewController.swift in Sources */,
 				AF4553BF1D262F76002EAE64 /* TrendingCell.swift in Sources */,
 				AF23BA521D26E91E007ED1CB /* MentionCell.swift in Sources */,
+				AF5854091D273D7A00D3249C /* MessageCell.swift in Sources */,
 				AF5E68491D21CFF70008AF54 /* TweetsViewController.swift in Sources */,
 				AF324F2F1D2580860017AEAB /* InfiniteScrollActivityView.swift in Sources */,
 				AF5E68571D233E0A0008AF54 /* ComposeViewController.swift in Sources */,
 				AF5E68531D232A510008AF54 /* ProfileViewController.swift in Sources */,
 				AF5854071D273A1C00D3249C /* MessagesViewController.swift in Sources */,
+				AF58540B1D273D8E00D3249C /* Message.swift in Sources */,
 				AF5E680D1D21BA370008AF54 /* AppDelegate.swift in Sources */,
 				AF4553C11D263498002EAE64 /* Trend.swift in Sources */,
 				AF5E68511D2312280008AF54 /* DetailViewController.swift in Sources */,

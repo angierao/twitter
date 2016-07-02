@@ -52,10 +52,12 @@ class User: NSObject {
     
     var backgroundUrl: NSURL? {
         get {
-            if let backUrlString = dictionary["profile_background_image_url"] as? String {
+            if let backUrlString = dictionary["profile_background_image_url_https"] as? String {
+                print("background")
                 return NSURL(string: backUrlString)
             }
             else {
+                print("no background")
                 return NSURL(string: "")
             }
         }
