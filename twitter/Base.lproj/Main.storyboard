@@ -20,7 +20,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6LA-Pd-beB">
                                 <rect key="frame" x="87" y="337" width="202" height="52"/>
-                                <color key="backgroundColor" red="0.41199080630089047" green="0.85500080388721023" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.30588235294117649" green="0.59607843137254901" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Login with Twitter">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -28,11 +28,21 @@
                                     <action selector="onLogIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RHZ-Hn-VT9"/>
                                 </connections>
                             </button>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="loginbird" translatesAutoresizingMaskIntoConstraints="NO" id="opg-o7-7jE">
+                                <rect key="frame" x="112" y="74" width="150" height="122"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to Twitter!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SK8-wD-qBU">
+                                <rect key="frame" x="57" y="261" width="263" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="loginButton" destination="6LA-Pd-beB" id="GY1-76-rEe"/>
                         <segue destination="KAi-OC-YUS" kind="presentation" identifier="loginSegue" id="5WV-5d-cUH"/>
                     </connections>
                 </viewController>
@@ -1712,6 +1722,7 @@
     <resources>
         <image name="bluebuzzfeed" width="30" height="30"/>
         <image name="favorite-action" width="122" height="112"/>
+        <image name="loginbird" width="150" height="122"/>
         <image name="reply-action" width="65" height="72"/>
         <image name="retweet-action" width="75" height="72"/>
     </resources>
