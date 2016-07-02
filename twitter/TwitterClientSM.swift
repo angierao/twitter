@@ -40,6 +40,15 @@ class TwitterClientSM: BDBOAuth1SessionManager {
         
     }
     
+    func newMessage(parameters: NSDictionary, success: Message -> (), failure: NSError -> ()) {
+        POST("1.1/direct_messages/new.json", parameters: parameters, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
+            let message = Message(dictionary: response as! NSDictionary)
+            success(message)
+        }) { (task: NSURLSessionDataTask?, error: NSError) in
+                failure(error)
+        }
+    }
+    
     func messages(success: [Message] -> (), failure: NSError -> ()) {
         GET("1.1/direct_messages/sent.json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
             print("message good")

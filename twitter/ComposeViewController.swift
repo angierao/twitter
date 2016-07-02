@@ -103,8 +103,6 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIAlertViewDe
         ]
         
         TwitterClientSM.sharedInstance.newTweet(dict, success: { (tweet: Tweet) in
-            print(tweet)
-            print(tweet.in_reply_to_status_id)
             self.dismissViewControllerAnimated(true, completion: nil)
         }, failure: { (error: NSError) in
                 print(error)

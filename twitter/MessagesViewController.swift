@@ -15,6 +15,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        composeButton()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -26,15 +27,38 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
         self.title = "Sent Messages"
         
+        
+        // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         TwitterClientSM.sharedInstance.messages({ (messages: [Message]) in
             self.messages = messages
             self.tableView.reloadData()
         }) { (error: NSError) in
-                print(error)
+            print(error)
         }
 
-        // Do any additional setup after loading the view.
     }
+    
+
+    
+    func composeButton() {
+        let button: UIButton = UIButton(type: UIButtonType.Custom)
+        button.setImage(UIImage(named: "pencilline.png"), forState: UIControlState.Normal)
+        button.addTarget(self, action: #selector(TweetsViewController.compose), forControlEvents: UIControlEvents.TouchUpInside)
+        button.frame = CGRectMake(0, 0, 30, 30)
+        
+        let barButton = UIBarButtonItem(customView: button)
+        //assign button to navigationbar
+        self.navigationItem.rightBarButtonItem = barButton
+    }
+    
+    func compose() {
+        performSegueWithIdentifier("newDMSegue", sender: nil)
+    }
+
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages?.count ?? 0
@@ -53,14 +77,18 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "newDMSegue" {
+            
+        }
     }
-    */
+    
 
 }

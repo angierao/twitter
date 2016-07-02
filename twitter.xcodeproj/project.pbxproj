@@ -22,6 +22,7 @@
 		AF5854071D273A1C00D3249C /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5854061D273A1C00D3249C /* MessagesViewController.swift */; };
 		AF5854091D273D7A00D3249C /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5854081D273D7A00D3249C /* MessageCell.swift */; };
 		AF58540B1D273D8E00D3249C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF58540A1D273D8E00D3249C /* Message.swift */; };
+		AF58540F1D27538B00D3249C /* NewDMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF58540E1D27538B00D3249C /* NewDMViewController.swift */; };
 		AF5E680D1D21BA370008AF54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5E680C1D21BA370008AF54 /* AppDelegate.swift */; };
 		AF5E68121D21BA370008AF54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF5E68101D21BA370008AF54 /* Main.storyboard */; };
 		AF5E68141D21BA370008AF54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF5E68131D21BA370008AF54 /* Assets.xcassets */; };
@@ -76,6 +77,7 @@
 		AF5854061D273A1C00D3249C /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		AF5854081D273D7A00D3249C /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		AF58540A1D273D8E00D3249C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		AF58540E1D27538B00D3249C /* NewDMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDMViewController.swift; sourceTree = "<group>"; };
 		AF5E68091D21BA370008AF54 /* twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF5E680C1D21BA370008AF54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF5E68111D21BA370008AF54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -232,12 +234,13 @@
 				AF5E68481D21CFF70008AF54 /* TweetsViewController.swift */,
 				AF5E68501D2312280008AF54 /* DetailViewController.swift */,
 				AF5E68521D232A510008AF54 /* ProfileViewController.swift */,
-				AF5E68561D233E0A0008AF54 /* ComposeViewController.swift */,
 				AF324F291D2449A60017AEAB /* UserViewController.swift */,
 				AF4553BC1D262F10002EAE64 /* TrendingViewController.swift */,
 				AF23BA4D1D265AAC007ED1CB /* ContainerViewController.swift */,
 				AF23BA4F1D26E632007ED1CB /* MentionsViewController.swift */,
 				AF5854061D273A1C00D3249C /* MessagesViewController.swift */,
+				AF5E68561D233E0A0008AF54 /* ComposeViewController.swift */,
+				AF58540E1D27538B00D3249C /* NewDMViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				AF5854091D273D7A00D3249C /* MessageCell.swift in Sources */,
 				AF5E68491D21CFF70008AF54 /* TweetsViewController.swift in Sources */,
 				AF324F2F1D2580860017AEAB /* InfiniteScrollActivityView.swift in Sources */,
+				AF58540F1D27538B00D3249C /* NewDMViewController.swift in Sources */,
 				AF5E68571D233E0A0008AF54 /* ComposeViewController.swift in Sources */,
 				AF5E68531D232A510008AF54 /* ProfileViewController.swift in Sources */,
 				AF5854071D273A1C00D3249C /* MessagesViewController.swift in Sources */,
