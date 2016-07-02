@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().barTintColor = UIColor(red: 85/255, green: 172/255, blue: 238/255, alpha: 1.0)
         UITabBar.appearance().tintColor = UIColor.whiteColor()
 
+
         if User.currentUser != nil {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -28,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let profileViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileNavigationController")
             profileViewController.tabBarItem.title = "Profile"
             profileViewController.tabBarItem.image = UIImage(named: "icon-profile")
-
+            
             
             let mentionsViewController = storyboard.instantiateViewControllerWithIdentifier("MentionsNavigationController")
             mentionsViewController.tabBarItem.title = "Mentions"
@@ -39,7 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             containerViewController.tabBarItem.title = "Home"
             containerViewController.tabBarItem.image = UIImage(named: "home-ios-icon")
             
-            vc.viewControllers = [containerViewController, mentionsViewController, profileViewController]
+            let messagesViewController = storyboard.instantiateViewControllerWithIdentifier("MessagesNavigationController")
+            messagesViewController.tabBarItem.title = "Messages"
+            messagesViewController.tabBarItem.image = UIImage(named: "message")
+            
+            vc.viewControllers = [containerViewController, mentionsViewController, messagesViewController, profileViewController]
             
             window!.rootViewController = vc
 
