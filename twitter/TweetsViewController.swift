@@ -170,7 +170,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let buttonImage = UIImagePNGRepresentation(button.currentImage!)
         
         if grayRT!.isEqualToData(buttonImage!) {
-            print("inside")
+
             tweet.retweeted = true
             let greenRT = UIImage(named: "retweeted-green")
             cell.RTButton.setImage(greenRT, forState: UIControlState.Normal)

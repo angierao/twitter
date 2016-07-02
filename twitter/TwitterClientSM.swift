@@ -51,14 +51,10 @@ class TwitterClientSM: BDBOAuth1SessionManager {
     
     func messages(success: [Message] -> (), failure: NSError -> ()) {
         GET("1.1/direct_messages/sent.json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
-            print("message good")
             let dictionaries = response as! [NSDictionary]
-            print(dictionaries)
             let messages = Message.messagesWithArray(dictionaries)
-            print(messages)
             success(messages)
         }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
-                print("message bad")
                 failure(error)
         })
     }
@@ -101,7 +97,6 @@ class TwitterClientSM: BDBOAuth1SessionManager {
     
     
     func retweet(id: Int, success: (Tweet) -> (), failure: NSError -> ()) {
-        print("1.1/statuses/retweet/\(id).json")
         POST("1.1/statuses/retweet/\(id).json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
             
             //print(response)
