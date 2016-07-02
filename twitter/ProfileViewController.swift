@@ -35,6 +35,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
         self.title = "Profile"
+        
+        
 
         let user = User.currentUser
         
