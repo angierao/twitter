@@ -8,37 +8,49 @@ Time spent: **X** hours spent in total
 
 The following **required** functionality is completed:
 
-- [ ] User can sign in using OAuth login flow
-- [ ] The current signed in user will be persisted across restarts
-- [ ] User can view last 20 tweets from their home timeline
-- [ ] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
-- [ ] User can pull to refresh.
-- [ ] User should display the relative timestamp for each tweet "8m", "7h"
-- [ ] Retweeting and favoriting should increment the retweet and favorite count.
-- [ ] User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
-- [ ] User can compose a new tweet by tapping on a compose button.
-- [ ] User can tap the profile image in any tweet to see another user's profile
-   - [ ] Contains the user header view: picture and tagline
-   - [ ] Contains a section with the users basic stats: # tweets, # following, # followers
-   - [ ] Profile view should include that user's timeline
-- [ ] User can navigate to view their own profile
-   - [ ] Contains the user header view: picture and tagline
-   - [ ] Contains a section with the users basic stats: # tweets, # following, # followers
+- [X] User can sign in using OAuth login flow
+- [X] The current signed in user will be persisted across restarts
+- [X] User can view last 20 tweets from their home timeline
+- [X] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
+- [X] User can pull to refresh.
+- [X] User should display the relative timestamp for each tweet "8m", "7h"
+- [X] Retweeting and favoriting should increment the retweet and favorite count.
+- [X] User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
+- [X] User can compose a new tweet by tapping on a compose button.
+- [X] User can tap the profile image in any tweet to see another user's profile
+   - [X] Contains the user header view: picture and tagline
+   - [X] Contains a section with the users basic stats: # tweets, # following, # followers
+   - [X] Profile view should include that user's timeline
+- [X] User can navigate to view their own profile
+   - [X] Contains the user header view: picture and tagline
+   - [X] Contains a section with the users basic stats: # tweets, # following, # followers
 
 The following **optional** features are implemented:
 
-- [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
+- [X] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 - [ ] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count.
-- [ ] When composing, you should have a countdown in the upper right for the tweet limit.
-- [ ] After creating a new tweet, a user should be able to view it in the timeline immediately without refetching the timeline from the network.
-- [ ] User can reply to any tweet, and replies should be prefixed with the username and the reply_id should be set when posting the tweet
+   - [X] Unfavoriting 
+- [X] When composing, you should have a countdown in the upper right for the tweet limit.
+- [X] After creating a new tweet, a user should be able to view it in the timeline immediately without refetching the timeline from the network.
+- [X] User can reply to any tweet, and replies should be prefixed with the username and the reply_id should be set when posting the tweet
 - [ ] Links in tweets are clickable
-- [ ] User can switch between timeline, mentions, or profile view through a tab bar
+- [X] User can switch between timeline, mentions, or profile view through a tab bar
 - [ ] Pulling down the profile page should blur and resize the header image.
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [X] Added a left sliding panel that uses a user's location to return locally trending topics on Twitter
+- [X] Clicking on a trending topic opens up Safari and searches for the topic on Twitter
+- [X] Users can view their sent messages
+- [X] Users can send a new message
+- [X] Users can view retweets of them
+- [X] Alerts when the tweet is too long to tweet
+- [X] Character count when composing a tweet changes to red when it is negative
+- [X] Custom login screen
+- [X] Customized navigation bar and tab bar
+   - [X] Custom tab bar icons
+   - [X] User profile navigation bar headings display their name
+   - [X] Custom navigation bar icon
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
