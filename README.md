@@ -61,6 +61,10 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
+**Link to video of additional feature that requires a device**
+
+https://www.dropbox.com/s/pe1tsxx10qsqt9j/Video%20Jul%2001%2C%2010%2011%2051%20PM.mov?dl=0
+
 <img src='http://i.imgur.com/T0GAZiC.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <img src='http://i.imgur.com/vMVUj4d.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
