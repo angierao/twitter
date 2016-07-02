@@ -12,6 +12,9 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIAlertViewDe
     
     let maxChars = 140
 
+    @IBOutlet weak var twitterNameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var profPicView: UIImageView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var tweetButton: UIButton!
     @IBOutlet weak var charsLeft: UILabel!
@@ -20,6 +23,20 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIAlertViewDe
     var replyUser: String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let user = User.currentUser
+        nameLabel.text = user?.name as! String
+        twitterNameLabel.text = user?.screenname as! String
+        
+        let imageRequest = NSURLRequest(URL: user!.profileUrl!)
+        
+        profPicView.setImageWithURLRequest(imageRequest, placeholderImage: UIImage(named: "defaulttwitter"), success: { (request: NSURLRequest, response: NSHTTPURLResponse?, image: UIImage) in
+            self.profPicView.image = image
+        }) { (request: NSURLRequest, response: NSHTTPURLResponse?, error: NSError) in
+            print(error)
+        }
+        profPicView.layer.cornerRadius = profPicView.frame.height/12
+        
         self.tweetView.delegate = self
         self.tweetView.becomeFirstResponder()
         // Do any additional setup after loading the view
